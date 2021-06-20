@@ -17,24 +17,36 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const App: () => Node = () => {  
+const App: () => Node = () => { 
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.box}>
-        <TouchableOpacity 
-        style={styles.roundedButton1}>
-          <Text>+</Text>
-        </TouchableOpacity>
+        <Text style={styles.textoBonitinho1}>Visão Geral</Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', top: 30 }}>
+          <TouchableOpacity 
+          style={styles.roundedButton1}>
+            <Text>+</Text>
+          </TouchableOpacity>
+          <Text style={{ marginTop: 50, marginRight: 50, fontWeight: 'bold', fontSize: 18 }}>Receitas</Text>
+        </View>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', bottom: 15 }}>
+          <TouchableOpacity 
+          style={styles.roundedButton2}>
+            <Text>-</Text>
+          </TouchableOpacity>
+          <Text style={{ marginTop: 50, marginRight: 50, fontWeight: 'bold', fontSize: 18 }}>Despesas</Text>
+        </View>
       </View>
     </SafeAreaView>
-  );
+  )
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#32cd32',
+    backgroundColor: '#778899',
   },
 
   box: {
@@ -54,17 +66,39 @@ const styles = StyleSheet.create({
     "borderTopLeftRadius": 40,
     "borderTopRightRadius": 40,
     "borderBottomRightRadius": 40,
-    "borderBottomLeftRadius": 40
+    "borderBottomLeftRadius": 40,
   },
 
   roundedButton1: {
-    width: 60,
-    height: 50,
+    width: 45,
+    height: 45,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    padding: 5,
+    margin: 43,
     borderRadius: 100,
+    color: '#ffffff',
     backgroundColor: '#32cd32',
+  },
+
+  roundedButton2: {
+    width: 45,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    margin: 43,
+    borderRadius: 100,
+    color: '#ffffff',
+    backgroundColor: '#cd5c5c',
+  },
+
+  textoBonitinho1: {
+    left: 63,
+    top: 15,
+    fontSize: 16,
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold'
   }
 });
 
