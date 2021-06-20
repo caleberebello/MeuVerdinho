@@ -1,0 +1,4 @@
+
+Header Set Access-Control-Allow-Origin "*"
+
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
