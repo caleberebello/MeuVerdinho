@@ -6,25 +6,28 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {Node} from 'react';
 import {
   Text,
-  Alert,
   SafeAreaView,
   StyleSheet,
   View,
   TouchableOpacity,
 } from 'react-native';
+import Modal from './telas/Receitas'
 
 const App: () => Node = () => { 
+
+  const [modal, setModal] = useState(false)
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.box}>
         <Text style={styles.textoBonitinho1}>Visão Geral</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', top: 30 }}>
-          <TouchableOpacity 
+          <TouchableOpacity
+          onPress={() => setModal(true)}
           style={styles.roundedButton1}>
             <Text>+</Text>
           </TouchableOpacity>
@@ -38,6 +41,10 @@ const App: () => Node = () => {
           <Text style={{ marginTop: 50, marginRight: 50, fontWeight: 'bold', fontSize: 18 }}>Despesas</Text>
         </View>
       </View>
+      <Modal
+        show={modal}
+        close={() => setModal(false)}
+      />
     </SafeAreaView>
   )
 };
