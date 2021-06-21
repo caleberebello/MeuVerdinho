@@ -9,6 +9,7 @@ MERGED from [com.facebook.flipper:flipper:0.75.1] /home/calebe/.gradle/caches/tr
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.75.1] /home/calebe/.gradle/caches/transforms-2/files-2.1/d8279ebfbcca51b68586de1b9bc17210/jetified-flipper-network-plugin-0.75.1/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.75.1] /home/calebe/.gradle/caches/transforms-2/files-2.1/13e0ca18817a9e59a8c4a94704ec8c3c/jetified-flipper-fresco-plugin-0.75.1/AndroidManifest.xml:8:1-15:12
 MERGED from [:react-native-community_masked-view] /home/calebe/Documents/MeuVerdinho/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-picker_picker] /home/calebe/Documents/MeuVerdinho/node_modules/@react-native-picker/picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-date-picker] /home/calebe/Documents/MeuVerdinho/node_modules/react-native-date-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] /home/calebe/Documents/MeuVerdinho/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-safe-area-context] /home/calebe/Documents/MeuVerdinho/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -167,6 +168,8 @@ MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.75.1] /home/calebe/.gr
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.75.1] /home/calebe/.gradle/caches/transforms-2/files-2.1/13e0ca18817a9e59a8c4a94704ec8c3c/jetified-flipper-fresco-plugin-0.75.1/AndroidManifest.xml:11:5-13:41
 MERGED from [:react-native-community_masked-view] /home/calebe/Documents/MeuVerdinho/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /home/calebe/Documents/MeuVerdinho/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-picker_picker] /home/calebe/Documents/MeuVerdinho/node_modules/@react-native-picker/picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-picker_picker] /home/calebe/Documents/MeuVerdinho/node_modules/@react-native-picker/picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-date-picker] /home/calebe/Documents/MeuVerdinho/node_modules/react-native-date-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-date-picker] /home/calebe/Documents/MeuVerdinho/node_modules/react-native-date-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-gesture-handler] /home/calebe/Documents/MeuVerdinho/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41

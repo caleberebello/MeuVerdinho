@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions, TextInput, ScrollView } from 'react-native'
 import DatePicker from 'react-native-date-picker'
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import {Picker} from '@react-native-picker/picker'
+
 
 const { height } = Dimensions.get('window')
 
 const Modal = ({ show, close }) => {
+
+  const [selectedLanguage, setSelectedLanguage] = useState();
+
   const [state, setState] = useState({
     opacity: new Animated.Value(0),
     container: new Animated.Value(height),
@@ -55,6 +61,9 @@ const Modal = ({ show, close }) => {
         }]}
       >
         <View style={styles.indicator} />
+        <ScrollView>
+
+        <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Nova Receita</Text>
 
        <Text>Descrição</Text>
        <TextInput placeholder="Adicionar"></TextInput>
@@ -68,9 +77,52 @@ const Modal = ({ show, close }) => {
         onDateChange={setDate}
        />
 
+       <Text>Recorrência</Text>
+        <BouncyCheckbox
+        text="Nenhuma"
+        onPress={(isChecked: boolean) => {}}/>
+
+        <BouncyCheckbox 
+        text="Parcelada"
+        onPress={(isChecked: boolean) => {}}/>
+
+      <BouncyCheckbox 
+      text="Mensal"
+      onPress={(isChecked: boolean) => {}}/>
+
+      <Text>Categoria</Text>
+
+      <Picker
+      selectedValue={selectedLanguage}
+      onValueChange={(itemValue, itemIndex) => 
+        setSelectedLanguage(itemValue)
+      }>
+        <Picker.Item label="Teste" value="teste"/>
+        <Picker.Item label="OutroTeste" value="ot"/>
+      </Picker>
+      <Text>Conta</Text>
+      <Picker
+      selectedValue={selectedLanguage}
+      onValueChange={(itemValue, itemIndex) => 
+        setSelectedLanguage(itemValue)
+      }>
+        <Picker.Item label="Teste" value="teste"/>
+        <Picker.Item label="OutroTeste" value="ot"/>
+      </Picker>
+
+      <Text>Situação</Text>
+      <BouncyCheckbox
+        text="A pagar"
+        onPress={(isChecked: boolean) => {}}/>
+
+        <BouncyCheckbox 
+        text="Pago"
+        onPress={(isChecked: boolean) => {}}/>
+
         <TouchableOpacity style={styles.btn} onPress={close}>
           <Text style={{ color: '#fff' }}>Salvar</Text>
         </TouchableOpacity>
+        </ScrollView>
       </Animated.View>
     </Animated.View>
   )
@@ -113,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#9b59b6',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop:30,
     marginLeft: 115
   }
 })

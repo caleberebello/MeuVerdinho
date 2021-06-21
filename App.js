@@ -15,11 +15,13 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import Modal from './telas/Receitas'
+import Modal from './telas/Receitas';
+import Modal1 from './telas/Despesas';
 
 const App: () => Node = () => { 
 
   const [modal, setModal] = useState(false)
+  const [modal1, setModal1] = useState(false)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,6 +37,7 @@ const App: () => Node = () => {
         </View>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', bottom: 15 }}>
           <TouchableOpacity 
+          onPress={() => setModal1(true)}
           style={styles.roundedButton2}>
             <Text>-</Text>
           </TouchableOpacity>
@@ -44,6 +47,10 @@ const App: () => Node = () => {
       <Modal
         show={modal}
         close={() => setModal(false)}
+      />
+      <Modal1
+      show={modal1}
+      close={() => setModal1(false)}
       />
     </SafeAreaView>
   )
