@@ -3,6 +3,7 @@
 use function src\slimConfiguration;
 
 use App\Controllers\PostgreSQL\AttendanceController;
+use App\Controllers\PostgreSQL\UserController;
 use Tuupola\Middleware\JwtAuthentication;
 
 $app = new \Slim\App(slimConfiguration());
@@ -16,21 +17,22 @@ $app->add(function ($req, $res, $next) {
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 });
 
-$app->post('/login', AuthenticateController::class . ':login');
-
 $app->get('/mygreen-version', function ($request, $response, $args) {
     return $response
-        ->withStatus(200)
-        ->withjson([
-            'descricao' => 'Goblin\'s Cash - TESTE',
-            'versao-api' => '01.000.00'
-        ]);
+    ->withStatus(200)
+    ->withjson([
+        'descricao' => 'Goblin\'s Cash - TESTE',
+        'versao-api' => '01.000.00'
+    ]);
 });
 
+$app->post('/login', AuthenticateController::class . ':login');
+
+$app->post('/user', UserController::class . ':registerUser');
+$app->get('/user', UserController::class . ':listUsers');
 
 $app->group('',function() use ($app){
     $app->get('/person', PersonController::class . ':listPersons');
-    $app->post('/person', PersonController::class . ':registerPerson');
 
     $app->get('/verifica-autenticacao', function ($request, $response, $args) {
         return $response

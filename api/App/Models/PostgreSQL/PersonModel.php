@@ -5,11 +5,10 @@ namespace App\Models\PostgreSQL;
 class PersonModel
 {
 	private $idPerson;
-	private $idUser;
 	private $name;
 	private $birthDate;
 	private $phone;
-	private $imgPath;
+	private $imgPath=null;
 
     /**
      * Get the value of idPerson
@@ -32,29 +31,9 @@ class PersonModel
     }
 
     /**
-     * Get the value of idUser
-     */ 
-    public function getIdUser(): int
-    {
-        return $this->idUser;
-    }
-
-    /**
-     * Set the value of idUser
-     *
-     * @return  self
-     */ 
-    public function setIdUser($idUser): PersonModel
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
      * Get the value of name
      */ 
-    public function getName(): double
+    public function getName(): string
     {
         return $this->name;
     }
@@ -114,7 +93,7 @@ class PersonModel
 	/**
      * Get the value of imgPath
      */ 
-    public function getImgPath(): string
+    public function getImgPath()
     {
         return $this->imgPath;
     }
@@ -124,7 +103,7 @@ class PersonModel
      *
      * @return  self
      */ 
-    public function setImgPath($imgPath): PersonModel
+    public function setImgPath($imgPath)
     {
         $this->imgPath = $imgPath;
 

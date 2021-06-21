@@ -20,7 +20,7 @@ final class PersonDAO extends Connection
         $statement = $this->pdo
             ->prepare(" SELECT 
                             * 
-                        FROM administracao.pessoa
+                        FROM adm.pessoa
                         ");
         $statement->execute();
         $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -28,75 +28,19 @@ final class PersonDAO extends Connection
         return $result;
     }
 
-    public function checkCPF(string $cpf)
-    {
-        $statement = $this->pdo
-            ->prepare(' SELECT 
-                            idpessoa,
-                            naturalidade,
-                            nome,
-                            datanascimento,
-                            sexo,
-                            cpf,
-                            rg,
-                            nomemae,
-                            nomepai,
-                            email,
-                            telefone1,
-                            telefone2
-                        FROM administracao.pessoa
-                        WHERE cpf = :cpf
-                        ORDER BY idpessoa
-            ');
-        $statement->bindValue('cpf', $cpf);
-        $statement->execute();
-        $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        return $response;
-    }
-
     public function checkEmail(string $email)
     {
         $statement = $this->pdo
             ->prepare(' SELECT 
                             idpessoa,
-                            naturalidade,
                             nome,
-                            datanascimento,
-                            sexo,
-                            cpf,
-                            nomemae,
-                            email,
-                            telefone1,
-                            telefone2
-                        FROM administracao.pessoa
+                            data_nascimento,
+                            telefone
+                        FROM adm.pessoa
                         WHERE email = :email
-                        ORDER BY idpessoa
+                        ORDER BY pessoa_id
             ');
         $statement->bindValue('email', $email);
-        $statement->execute();
-        $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        return $response;
-    }
-
-    public function checkRG(string $rg)
-    {
-        $statement = $this->pdo
-            ->prepare(' SELECT 
-                            idpessoa,
-                            naturalidade,
-                            nome,
-                            datanascimento,
-                            sexo,
-                            cpf,
-                            nomemae,
-                            email,
-                            telefone1,
-                            telefone2
-                        FROM administracao.pessoa
-                        WHERE rg = :rg
-                        ORDER BY idpessoa
-            ');
-        $statement->bindValue('rg', $rg);
         $statement->execute();
         $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $response;
@@ -129,206 +73,30 @@ final class PersonDAO extends Connection
     public function registerPerson(PersonModel $person)
     {   
         $statement = $this->pdo
-            ->prepare(' SELECT 
-                            *
-                        FROM administracao.pessoa
-                        WHERE
-                            :cpf = cpf
-                            OR
-                            :email = email
-                        ;');
-        $statement->execute([
-            'cpf' => $person->getCpf(),
-            'email' => $person->getEmail()
-        ]);
-
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);    
-        //Existe uma pessoa cadastrada com o CPF
-        if ($result){
-            return null;
-        }
-        //Não existe uma pessoa com este CPF, então pode continuar com o cadastro
-        $statement = $this->pdo
-            ->prepare('INSERT INTO administracao.pessoa (
-                naturalidade,
-                nome, 
-                datanascimento, 
-                sexo, 
-                cpf, 
-                rg, 
-                nomemae, 
-                nomepai, 
-                email, 
-                telefone1, 
-                telefone2
+            ->prepare('INSERT INTO adm.pessoa (
+                nome,
+                data_nascimento,
+                telefone,
+                img_path
             )
             VALUES(
-                :naturalidade,
                 :nome, 
-                :datanascimento, 
-                :sexo, 
-                :cpf, 
-                :rg,
-                :nomemae, 
-                :nomepai, 
-                :email, 
-                :telefone1, 
-                :telefone2
+                :data_nascimento, 
+                :telefone,
+                :img_path
             );');
 
         $statement->execute([
-            'naturalidade' => $person->getNaturalness(),
             'nome' => $person->getName(),
-            'datanascimento' => $person->getBirth(),
-            'sexo' => $person->getGender(),
-            'cpf' => $person->getCpf(),
-            'rg' => $person->getRg(),
-            'nomemae' => $person->getMotherName(),
-            'nomepai' => $person->getFatherName(),
-            'email' => $person->getEmail(),
-            'telefone1' => $person->getPhone1(),
-            'telefone2' => $person->getPhone2()
+            'data_nascimento' => $person->getBirthDate(),
+            'telefone' => $person->getPhone(),
+            'img_path' => $person->getImgPath()
         ]);
-        //$result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        
         $idPerson =  $this->pdo->lastInsertId();   
-
+        
         return $idPerson;
-    }
-
-    public function updatePersonData(PersonModel $person): array
-    {
-        
-        $statement = $this->pdo
-            ->prepare(' UPDATE administracao.pessoa SET
-                            naturalidade = :naturalidade,
-                            nome = :nome, 
-                            datanascimento = :datanascimento, 
-                            sexo = :sexo, 
-                            cpf = :cpf,
-                            rg = :rg,
-                            nomemae = :nomemae,
-                            nomepai = :nomepai,
-                            email = :email, 
-                            telefone1 = :telefone1, 
-                            telefone2 = :telefone2
-                        WHERE
-                            cpf = :cpf
-        ;');
-
-        $statement->execute([
-            'naturalidade' => $person->getNaturalness(),
-            'nome' => $person->getName(),
-            'datanascimento' => $person->getBirth(),
-            'sexo' => $person->getGender(),
-            'cpf' => $person->getCpf(),
-            'rg' => $person->getRg(),
-            'nomemae' => $person->getMotherName(),
-            'nomepai' => $person->getFatherName(),
-            'email' => $person->getEmail(),
-            'telefone1' => $person->getPhone1(),
-            'telefone2' => $person->getPhone2()
-        ]);
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-    public function updatePersonWithId(PersonModel $person): array
-    {
-        
-        $statement = $this->pdo
-            ->prepare(' UPDATE administracao.pessoa SET
-                            naturalidade = :naturalidade,
-                            nome = :nome, 
-                            datanascimento = :datanascimento, 
-                            sexo = :sexo, 
-                            cpf = :cpf,
-                            rg = :rg,
-                            nomemae = :nomemae,
-                            nomepai = :nomepai,
-                            email = :email, 
-                            telefone1 = :telefone1, 
-                            telefone2 = :telefone2
-                        WHERE
-                            idpessoa = :idpessoa
-        ;');
-
-        $statement->execute([
-            'idpessoa' => $person->getIdPerson(),
-            'naturalidade' => $person->getNaturalness(),
-            'nome' => $person->getName(),
-            'datanascimento' => $person->getBirth(),
-            'sexo' => $person->getGender(),
-            'cpf' => $person->getCpf(),
-            'rg' => $person->getRg(),
-            'nomemae' => $person->getMotherName(),
-            'nomepai' => $person->getFatherName(),
-            'email' => $person->getEmail(),
-            'telefone1' => $person->getPhone1(),
-            'telefone2' => $person->getPhone2()
-        ]);
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-    public function deletePerson(int $idPerson)
-    {
-        $statement = $this->pdo
-            ->prepare(" DELETE FROM administracao.pessoa                            
-                        WHERE idpessoa = :idpessoa
-                        ;");
-        $statement->bindValue(':idpessoa', $idPerson);
-        $statement->execute();
-        $success = $statement->rowCount() === 1;
-        
-        return $success;
-    }
-
-    public function checkIfCurrentCpfIsEqual(PersonModel $person)
-    {
-        $statement = $this->pdo
-            ->prepare(' SELECT 
-                            cpf
-                        FROM administracao.pessoa 
-                        WHERE cpf = :cpf
-                        AND idpessoa = :idpessoa
-            ');
-        $statement->execute([
-            ':idpessoa' => $person->getIdPerson(),
-            ':cpf' => $person->getCpf()
-        ]);
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-        $exist = false;
-        if(count($result) > 0){
-            $exist = true;
-        }
-        
-        return $exist;
-    }
-
-    public function checkIfCurrentRgIsEqual(PersonModel $person)
-    {
-        $statement = $this->pdo
-            ->prepare(' SELECT 
-                            rg
-                        FROM administracao.pessoa 
-                        WHERE rg = :rg
-                        AND idpessoa = :idpessoa
-            ');
-        $statement->execute([
-            ':idpessoa' => $person->getIdPerson(),
-            ':rg' => $person->getRg()
-        ]);
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-        $exist = false;
-        if(count($result) > 0){
-            $exist = true;
-        }
-        
-        return $exist;
     }
 
     public function checkIfCurrentEmailIsEqual(PersonModel $person)
@@ -336,12 +104,12 @@ final class PersonDAO extends Connection
         $statement = $this->pdo
             ->prepare(' SELECT 
                             email
-                        FROM administracao.pessoa 
+                        FROM adm.pessoa 
                         WHERE email = :email
-                        AND idpessoa = :idpessoa
+                        AND pessoa_id = :pessoa_id
             ');
         $statement->execute([
-            ':idpessoa' => $person->getIdPerson(),
+            ':pessoa_id' => $person->getIdPerson(),
             ':email' => $person->getEmail()
         ]);
         $result = $statement->fetchAll(\PDO::FETCH_ASSOC);

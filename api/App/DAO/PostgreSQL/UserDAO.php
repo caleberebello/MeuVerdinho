@@ -21,19 +21,26 @@ final class UserDAO extends Connection
     public function registerUser(UserModel $user)
     {
         $statement = $this->pdo
-            ->prepare(' INSERT INTO adm.usuario ( 
+            ->prepare(' INSERT INTO adm.usuario (
+                            pessoa_id,
+                            username,
                             email, 
                             senha
                         ) VALUES (
+                            :pessoa_id,
+                            :username,
                             :email,
                             :senha   
                         );
             ');
         $statement->execute([
-            'email'=>$user->getEmail(),
-            'senha'=>$user->getPassword()
+            'pessoa_id' => $user->getIdPerson(),
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+            'senha' => $user->getPassword()
         ]);
 
+        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $idUser =  $this->pdo->lastInsertId();
 
         return $idUser;
@@ -43,68 +50,74 @@ final class UserDAO extends Connection
     {
         $statement = $this->pdo
             ->prepare(' SELECT 
-                            u.idusuario,
-                            u.idpessoa,
-                            u.login,
-                            u.ativo
-                        FROM administracao.usuario AS u
-                        JOIN administracao.pessoa AS p
-                        ON u.idpessoa = p.idpessoa
-                        ORDER BY idusuario,ativo
+                            u.usuario_id,
+                            u.pessoa_id,
+                            u.email,
+                            u.username,
+                            p.nome,
+                            p.data_nascimento,
+                            p.telefone,
+                            p.img_path
+                        FROM adm.usuario AS u
+
+                        LEFT JOIN adm.pessoa AS p
+                            ON u.pessoa_id = p.pessoa_id
+
+                        ORDER BY usuario_id
             ');
         $statement->execute();
         $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $response;
     }
 
-    public function queryUserRest(string $email): array
-    {
-        $statement = $this->pdo
-            ->prepare(' SELECT
-                            u.idusuario,
-                            p.nome,
-                            u.login
-                        FROM administracao.usuario u
-                        join administracao.pessoa p
-                            on u.idpessoa = p.idpessoa
-                        WHERE login = :email
-            ');
-        $statement->bindParam('email', $email);
-        $statement->execute();
-        $user = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    // public function queryUserRest(string $email): array
+    // {
+    //     $statement = $this->pdo
+    //         ->prepare(' SELECT
+    //                         u.idusuario,
+    //                         p.nome,
+    //                         u.login
+    //                     FROM administracao.usuario u
+    //                     join administracao.pessoa p
+    //                         on u.idpessoa = p.idpessoa
+    //                     WHERE login = :email
+    //         ');
+    //     $statement->bindParam('email', $email);
+    //     $statement->execute();
+    //     $user = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $user;
-    }
+    //     return $user;
+    // }
 
-    public function updatePassword(UserModel $user): array
-    {
-        $statement = $this->pdo
-            ->prepare(' UPDATE administracao.usuario SET
-                            senha = :senha
-                        WHERE login = :login
+    // public function updatePassword(UserModel $user): array
+    // {
+    //     $statement = $this->pdo
+    //         ->prepare(' UPDATE administracao.usuario SET
+    //                         senha = :senha
+    //                     WHERE login = :login
                 
-            ');
-        $statement->execute([
-            'login'=>$user->getLogin(),
-            'senha'=>$user->getPassword()
-        ]);
-        $user = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    //         ');
+    //     $statement->execute([
+    //         'login'=>$user->getLogin(),
+    //         'senha'=>$user->getPassword()
+    //     ]);
+    //     $user = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $user;
-    }
+    //     return $user;
+    // }
 
-    public function userLogin(string $user): ?UserModel
+    public function userLogin(string $email): ?UserModel
     {
         $statement = $this->pdo
             ->prepare(' SELECT 
-                            u.idusuario,
-                            u.idpessoa,
-                            u.login,
-                            u.senha
-                        FROM administracao.usuario u
-                        WHERE u.login = :usuario
+                            usuario_id,
+                            pessoa_id,
+                            email,
+                            senha
+                        FROM adm.usuario
+                        WHERE email = :email
             ');
-        $statement->bindParam('usuario', $user);
+        $statement->bindParam('email', $email);
         $statement->execute();
         $users = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -113,49 +126,31 @@ final class UserDAO extends Connection
         
         $user = new UserModel();
         $user
-            ->setIdUser($users[0]['idusuario'])
-            ->setIdPerson($users[0]['idpessoa'])
-            ->setLogin($users[0]['login'])
+            ->setIdUser($users[0]['usuario_id'])
+            ->setIdPerson($users[0]['pessoa_id'])
+            ->setEmail($users[0]['email'])
             ->setPassword($users[0]['senha']);
 
         return $user;
     }
 
-    public function listUserCompany(string $login): array
-    {
-        $statement = $this->pdo
-            ->prepare(" SELECT e.idempresa, e.nome, e.endereco
-                        FROM administracao.usuario u 
-                        join administracao.usuario_empresa ue 
-                            on u.idusuario = ue.idusuario 
-                            and ue.ativo = 'T'
-                        join administracao.empresa e 
-                            on ue.idempresa = e.idempresa 
-                        WHERE u.login = :login
-            ");
-        $statement->bindParam('login', $login);
-        $statement->execute();
-        $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        return $response;
-    }
-
-    public function getUserById(int $idUser)
-    {
-        $statement = $this->pdo
-            ->prepare(' SELECT 
-                            idusuario,
-                            idpessoa,
-                            login,
-                            ativo
-                        FROM administracao.usuario
-                        WHERE idusuario = :idusuario
-                        ORDER BY idusuario,ativo
-            ');
-        $statement->bindParam('idusuario', $idUser);
-        $statement->execute();
-        $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        return $response;
-    }
+    // public function getUserById(int $idUser)
+    // {
+    //     $statement = $this->pdo
+    //         ->prepare(' SELECT 
+    //                         idusuario,
+    //                         idpessoa,
+    //                         login,
+    //                         ativo
+    //                     FROM administracao.usuario
+    //                     WHERE idusuario = :idusuario
+    //                     ORDER BY idusuario,ativo
+    //         ');
+    //     $statement->bindParam('idusuario', $idUser);
+    //     $statement->execute();
+    //     $response = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $response;
+    // }
 
     // public function getTableInformationById(int $idUser)
     // {

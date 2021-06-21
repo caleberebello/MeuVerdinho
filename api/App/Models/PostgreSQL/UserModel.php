@@ -5,6 +5,7 @@ namespace App\Models\PostgreSQL;
 final class UserModel
 { 
     private $idUser;
+    private $idPerson;
     private $username;
     private $email;
     private $password;
@@ -26,6 +27,26 @@ final class UserModel
     public function setIdUser($idUser): UserModel
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idPerson
+     */ 
+    public function getIdPerson(): int
+    {
+        return $this->idPerson;
+    }
+
+    /**
+     * Set the value of idUser
+     *
+     * @return  self
+     */ 
+    public function setIdPerson($idPerson): UserModel
+    {
+        $this->idPerson = $idPerson;
 
         return $this;
     }
