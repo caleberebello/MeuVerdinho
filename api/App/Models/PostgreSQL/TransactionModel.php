@@ -6,8 +6,12 @@ final class TransactionModel
 { 
     private $idTransaction;
     private $idWallet;
+    private $description;
     private $value;
-    private $periodic;
+    private $dateExpire;
+    private $recurrence;
+    private $category;
+    private $situation;
     private $registerType;
     private $dateTimeRegister;
 
@@ -45,7 +49,7 @@ final class TransactionModel
      *
      * @return  self
      */ 
-    public function setIdWallet($idWallet): WalletModel
+    public function setIdWallet($idWallet): TransactionModel
     {
         $this->idWallet = $idWallet;
 
@@ -53,9 +57,29 @@ final class TransactionModel
     }
 
     /**
+     * Get the value of description
+     */ 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of value
+     *
+     * @return  self
+     */ 
+    public function setDescription($description): TransactionModel
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
      * Get the value of value
      */ 
-    public function getValue(): double
+    public function getValue(): float
     {
         return $this->value;
     }
@@ -65,7 +89,7 @@ final class TransactionModel
      *
      * @return  self
      */ 
-    public function setValue($value): WalletModel
+    public function setValue($value): TransactionModel
     {
         $this->value = $value;
 
@@ -73,11 +97,11 @@ final class TransactionModel
     }
 
     /**
-     * Get the value of periodic
+     * Get the value of dateExpire
      */ 
-    public function getPeriodic(): string
+    public function getDateExpire(): string
     {
-        return $this->periodic;
+        return $this->dateExpire;
     }
 
     /**
@@ -85,9 +109,69 @@ final class TransactionModel
      *
      * @return  self
      */ 
-    public function setPeriodic($periodic): WalletModel
+    public function setDateExpire($dateExpire): TransactionModel
     {
-        $this->periodic = $periodic;
+        $this->dateExpire = $dateExpire;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of recurrence
+     */ 
+    public function getRecurrence(): string
+    {
+        return $this->recurrence;
+    }
+
+    /**
+     * Set the value of recurrence
+     *
+     * @return  self
+     */ 
+    public function setRecurrence($recurrence): TransactionModel
+    {
+        $this->recurrence = $recurrence;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category): TransactionModel
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of situation
+     */ 
+    public function getSituation(): string
+    {
+        return $this->situation;
+    }
+
+    /**
+     * Set the value of situation
+     *
+     * @return  self
+     */ 
+    public function setSituation($situation): TransactionModel
+    {
+        $this->situation = $situation;
 
         return $this;
     }
@@ -105,29 +189,9 @@ final class TransactionModel
      *
      * @return  self
      */ 
-    public function setRegisterType($registerType): WalletModel
+    public function setregisterType($registerType): TransactionModel
     {
         $this->registerType = $registerType;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of dateTimeRegister
-     */ 
-    public function getDateTimeRegister(): string
-    {
-        return $this->dateTimeRegister;
-    }
-
-    /**
-     * Set the value of dateTimeRegister
-     *
-     * @return  self
-     */ 
-    public function setDateTimeRegister($dateTimeRegister): WalletModel
-    {
-        $this->dateTimeRegister = $dateTimeRegister;
 
         return $this;
     }

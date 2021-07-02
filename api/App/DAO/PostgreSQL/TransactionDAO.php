@@ -3,7 +3,7 @@
 namespace App\DAO\PostgreSQL;
 
 use App\DAO\PostgreSQL\Connection;
-use App\Models\PostgreSQL\WalletModel;
+use App\Models\PostgreSQL\TransactionModel;
 
 final class TransactionDAO extends Connection
 {
@@ -15,12 +15,12 @@ final class TransactionDAO extends Connection
         }
     }
 
-    public function listAdmeasurements(): array
+    public function listTransactions(): array
     {
         $statement = $this->pdo
             ->prepare(" SELECT 
                             *
-                        FROM adm.carteira
+                        FROM adm.transacao
                         ORDER BY carteira_id
                         ");
         $statement->execute();
@@ -29,68 +29,44 @@ final class TransactionDAO extends Connection
         return $result;
     }
 
-    public function registerAdmeasurement(AdmeasurementModel $admeasurementModel)
+    public function registerTransaction(TransactionModel $transactionModel)
     {
         $statement = $this->pdo
-            ->prepare(" INSERT INTO transfusao.afericao(
-                            idtipo_afericao,
-                            idato_transfusional_itens, 
-                            temperatura,
-                            pressao_arterial_sistolica,
-                            pressao_arterial_diastolica,
-                            saturacao,
-                            frequencia_cardiaca,
-                            frequencia_respiratoria,
-                            data_hora_registro,
-                            observacao)
+            ->prepare(" INSERT INTO adm.transacao(
+                            carteira_id,
+                            descricao,
+                            valor,
+                            data_vencimento,
+                            recorrencia,
+                            categoria,
+                            situacao,
+                            tipo_registro)
                         VALUES (
-                            :idtipo_afericao,
-                            :idato_transfusional_itens, 
-                            :temperatura,
-                            :pressao_arterial_sistolica,
-                            :pressao_arterial_diastolica,
-                            :saturacao,
-                            :frequencia_cardiaca,
-                            :frequencia_respiratoria,
-                            :data_hora_registro,
-                            :observacao);
+                            :carteira_id,
+                            :descricao,
+                            :valor,
+                            :data_vencimento,
+                            :recorrencia,
+                            :categoria,
+                            :situacao,
+                            :tipo_registro);
                         ");
         $statement->execute([
-            ':idtipo_afericao' => $admeasurementModel->getIdTypeAdmeasurement(),
-            ':idato_transfusional_itens' => $admeasurementModel->getIdTransfusionalAct_Itens(),
-            ':temperatura' => $admeasurementModel->getTemperature(),
-            ':pressao_arterial_sistolica' => $admeasurementModel->getSystolicBloodPressure(),
-            ':pressao_arterial_diastolica' => $admeasurementModel->getDiastolicBloodPressure(),
-            ':saturacao' => $admeasurementModel->getSaturation(),
-            ':frequencia_cardiaca' => $admeasurementModel->getHeartRate(),
-            ':frequencia_respiratoria' => $admeasurementModel->getRespiratoryRate(),
-            ':data_hora_registro' => $admeasurementModel->getDateTimeRegister(),
-            ':observacao' => $admeasurementModel->getObservation(),
+            'carteira_id' => $transactionModel->getIdWallet(),
+            'descricao' => $transactionModel->getDescription(),
+            'valor' => $transactionModel->getValue(),
+            'data_vencimento' => $transactionModel->getDateExpire(),
+            'recorrencia' => $transactionModel->getRecurrence(),
+            'categoria' => $transactionModel->getCategory(),
+            'situacao' => $transactionModel->getSituation(),
+            'tipo_registro' => $transactionModel->getRegisterType()
         ]);
         $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
         
-        $idAdmeasurement =  $this->pdo->lastInsertId();
+        $idTransaction =  $this->pdo->lastInsertId();
     
-        return $idAdmeasurement;
+        return $idTransaction;
     }
 
-    public function checkIfTransfusionalItemIsUsed($idTransfusionalAct_Itens)
-    {
-        $statement = $this->pdo
-            ->prepare(" SELECT 
-                            idato_transfusional_itens
-                        FROM transfusao.afericao
-                        WHERE idato_transfusional_itens = :idAtoTransfusional_Itens
-                        ");
-        $statement->bindValue(':idAtoTransfusional_Itens', $idTransfusionalAct_Itens);
-        $statement->execute();
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-        $isUsed = false;
-        if(count($result) > 0)
-            $isUsed = true;
-        
-        return $isUsed;
-    }
     
 }

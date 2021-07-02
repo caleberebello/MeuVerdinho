@@ -7,6 +7,7 @@ final class WalletModel
     private $idWallet;
     private $idUser;
     private $balance;
+    private $typeWallet;
     private $dateTimeRegister;
 
 
@@ -53,7 +54,7 @@ final class WalletModel
     /**
      * Get the value of balance
      */ 
-    public function getBalance(): double
+    public function getBalance(): float
     {
         return $this->balance;
     }
@@ -66,6 +67,26 @@ final class WalletModel
     public function setBalance($balance): WalletModel
     {
         $this->balance = $balance;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of typeWallet
+     */ 
+    public function getTypeWallet(): string
+    {
+        return $this->typeWallet;
+    }
+
+    /**
+     * Set the value of typeWallet
+     *
+     * @return  self
+     */ 
+    public function setTypeWallet($typeWallet): WalletModel
+    {
+        $this->typeWallet = $typeWallet;
 
         return $this;
     }

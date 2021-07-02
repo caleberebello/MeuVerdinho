@@ -4,6 +4,8 @@ use function src\slimConfiguration;
 
 use App\Controllers\PostgreSQL\AttendanceController;
 use App\Controllers\PostgreSQL\UserController;
+use App\Controllers\PostgreSQL\TransactionController;
+use App\Controllers\PostgreSQL\WalletController;
 use Tuupola\Middleware\JwtAuthentication;
 
 $app = new \Slim\App(slimConfiguration());
@@ -31,6 +33,18 @@ $app->post('/login', AuthenticateController::class . ':login');
 $app->post('/user', UserController::class . ':registerUser');
 $app->get('/user', UserController::class . ':listUsers');
 
+$app->post('/wallet', WalletController::class . ':registerWallet');
+$app->post('/share-wallet', WalletController::class . ':shareWallet');
+
+$app->get('/wallet-user-type', WalletController::class . ':lisUserWalletsByType');
+$app->get('/wallet', WalletController::class . ':listWallets');
+$app->get('/wallet/[{idWallet}]', WalletController::class . ':getWalletById');
+$app->get('/wallet-user', WalletController::class . ':listWalletUser');
+
+$app->post('/transaction', TransactionController::class . ':registerTransaction');
+
+
+//Need authentication
 $app->group('',function() use ($app){
     $app->get('/person', PersonController::class . ':listPersons');
 
@@ -46,9 +60,7 @@ $app->group('',function() use ($app){
 
         $_SESSION["idUsuario"] = $token['sub'];
         $_SESSION['idPessoa'] = $token['idPessoa'];
-        $_SESSION['login'] = $token['login'];
-        @$_SESSION['idEmpresa'] = $token['idEmpresa'];
-        @$_SESSION['idProfissional'] = $token['idProfissional'];
+        $_SESSION['login'] = $token['login'];;
         
         $expireDate = date_format(new \DateTime($token['dateExpire']), 'Y-m-d H:i:s');
         
