@@ -140,3 +140,41 @@ h1{
     box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.2);
     border-radius: 45px;
 }
+
+.box1{
+    display: inline-block;
+    margin-left: 200px;
+    width: 396px;
+    height: 54px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 9px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+}
+
+.btn-group button {
+    background-color: #FFFFFF; /* Green background */
+    border: none;
+    width: 132px;
+    height: 54px;
+    border-radius: 40px; /* Green border */
+    color: #111; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+  
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+  
+  /* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+  /* Add a background color on hover */
+.btn-group button:focus {
+    background-color: #683A25;
+}
