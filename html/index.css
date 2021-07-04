@@ -28,7 +28,7 @@ img {
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
-    background-color: #369426; /* Black*/
+    background-color: #F6F9FC; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
@@ -117,8 +117,8 @@ h1{
 }
 
 .saldo{
-    margin: 80px;
-    top: 30px;
+    margin: 35px;
+    font-size: 17px;
 }
 
 .circulo1{
@@ -177,4 +177,21 @@ h1{
   /* Add a background color on hover */
 .btn-group button:focus {
     background-color: #683A25;
+}
+
+.receitas{
+    margin: -30px;
+}
+
+.despesas{
+    margin: -30px;
+}
+
+.novo{
+    margin-left: 15px;
+    width: 150px;
+    height: 44px;
+    background: #48B137;
+    box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
 }
