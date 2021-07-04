@@ -49,7 +49,7 @@ class WalletController extends Connection
         ];
 
         $response = $response
-            ->withjson($result);
+            ->withjson($data);
 
         return $response;
     }

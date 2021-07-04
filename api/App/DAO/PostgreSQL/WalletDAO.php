@@ -151,7 +151,7 @@ final class WalletDAO extends Connection
                         ");
         $statement->bindValue('carteira_id', $idWallet);
         $statement->execute();
-        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        $result = $statement->fetch(\PDO::FETCH_ASSOC);
 
         return $result;
     }

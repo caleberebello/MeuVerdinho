@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet">
     <title>Teste</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
@@ -40,6 +41,16 @@
         </div>
         <div>
             <div class="box">
+                <div class="saldo-box">
+                    <script>
+                        $.getJSON('http://localhost:8000/wallet/?idWallet=1', function(data) {
+                            console.log(data);
+                            var result = data.saldo                      
+                            $(".saldo-box").html(result);
+                        });
+                    </script>
+                </div>
+
                 <h1 class="saldo">Saldo Atual</h1>
             </div>
             <div class="box">
