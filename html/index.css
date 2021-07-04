@@ -1,0 +1,180 @@
+header{
+    background-color: #369426;
+}
+
+img {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 1780px;
+    top: 9px;
+}
+
+.button{
+    width: 131px;
+    height: 42px;
+    align-items: right;
+    top: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 45px;
+}
+
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #369426; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+  
+/* The sidebar links */
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    display: block;
+    transition: 0.3s;
+}
+  
+  /* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+  
+  /* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+  
+  /* The button used to open the sidebar */
+.openbtn {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    background-color: #369426;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+  
+.openbtn:hover {
+    background-color: #444;
+}
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s; /* If you want a transition effect */
+    padding: 20px;
+}
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+.redondo{
+    width: 99px;
+    height: 42px;
+    margin-left: 33px;
+    background: #FFFFFF;
+    box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.2);
+    border-radius: 45px;
+}
+
+p{
+    font-size: 36px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box{
+    display: inline-block;
+    margin-left: 200px;
+    width: 312px;
+    height: 113px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 9px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+}
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+.saldo{
+    margin: 80px;
+    top: 30px;
+}
+
+.circulo1{
+    width: 40px;
+    height: 38px;
+    margin-left: 50px;
+    margin-top: 35px;
+    background: #48B137;
+    box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.2);
+    border-radius: 45px;
+}
+
+.circulo2{
+    width: 40px;
+    height: 38px;
+    margin-left: 50px;
+    margin-top: 35px;
+    background: #9F0002;
+    box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.2);
+    border-radius: 45px;
+}
+
+.box1{
+    display: inline-block;
+    margin-left: 200px;
+    width: 396px;
+    height: 54px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 9px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+}
+
+.btn-group button {
+    background-color: #FFFFFF; /* Green background */
+    border: none;
+    width: 132px;
+    height: 54px;
+    border-radius: 40px; /* Green border */
+    color: #111; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+  
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+  
+  /* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+  /* Add a background color on hover */
+.btn-group button:focus {
+    background-color: #683A25;
+}
