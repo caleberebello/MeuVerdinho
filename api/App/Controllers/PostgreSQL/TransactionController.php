@@ -36,6 +36,60 @@ class TransactionController extends Connection
         return $response;
     }
 
+    public function getUserTransactionsByType(Request $request, Response $response, array $args): Response
+    {
+        $data = $request->getParsedBody();
+        $idWallet = $data['carteira_id'];
+        $type = $data['tipo_registro'];
+
+        $transactionDAO = new TransactionDAO();
+
+        $data = $transactionDAO->getUserTransactionsByType($idWallet, $type);
+
+        $result = [
+            'message' => [
+                'pt' => null,
+                'en' => null
+            ],
+            'result' => $data
+        ];
+
+        $response = $response
+            ->withjson($result);
+
+        return $response;
+    }
+
+    public function getUserTotalTransactionsByType(Request $request, Response $response, array $args): Response
+    {
+        $data = $request->getParsedBody();
+        $idWallet = $data['carteira_id'];
+
+        $transactionDAO = new TransactionDAO();
+
+        $dataRevenue = $transactionDAO->getUserTransactionsByType($idWallet, 'R');
+        $dataRevenue = $transactionDAO->getUserTransactionsByType($idWallet, 'D');
+
+        $totalRevenue = $this->getTotalTransaction($data, 'R');
+        $totalExpense = $this->getTotalTransaction($data, 'D');
+
+        $result = [
+            'message' => [
+                'pt' => null,
+                'en' => null
+            ],
+            'result' => [
+                "total_receita" => $totalRevenue,
+                "total_despesa" => $totalExpense
+            ]
+        ];
+
+        $response = $response
+            ->withjson($result);
+
+        return $response;
+    }
+
     public function registerTransaction(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
@@ -114,6 +168,17 @@ class TransactionController extends Connection
             $this->pdo->rollBack();
             return $response;
         }
+    }
+
+    private function getTotalTransaction(array $data, string $type){
+        $total = 0.0;
+        foreach($data as $transaction){
+            if($transaction['tipo_registro'] === $type)
+                $totalRevenue += $transaction['valor'];
+        }
+
+        return $total;
+
     }
 
 }

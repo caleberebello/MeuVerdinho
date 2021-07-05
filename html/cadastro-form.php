@@ -1,7 +1,7 @@
 <?php
 // define variables and set to empty values
-$usernameErr = $nameErr = $emailErr = $birthErr = $websiteErr = "";
-$username = $name = $email = $birth = $comment = $website = "";
+$usernameErr = $nameErr = $emailErr = $birthErr = $passwordErr = "";
+$username = $name = $email = $birth =  $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["username"])) {
@@ -25,6 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$nameErr = "Only letters and white space allowed";
 		}
 	}
+	
+	if (empty($_POST["dataNascimento"])) {
+		$birthErr = "Data de nascimento is required";
+	} else {
+		$birth = test_input($_POST["dataNascimento"]);
+		
+	}
 
 	if (empty($_POST["email"])) {
 		$emailErr = "Email is required";
@@ -37,17 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
-	if (empty($_POST["dataNascimento"])) {
-		$birthErr = "Data de nascimento is required";
+	if (empty($_POST["senha"])) {
+		$passwordErr = "Senha is required";
 	} else {
-		$birth = test_input($_POST["dataNascimento"]);
+		$password = test_input($_POST["senha"]);
 
-	}
-
-	if (empty($_POST["comment"])) {
-		$comment = "";
-	} else {
-		$comment = test_input($_POST["comment"]);
+		// // check if name only contains letters and whitespace
+		// if (!preg_match("/^[a-zA-Z-' ]*$/",$password)) {
+		// 	$passwordErr = "Only letters and white space allowed";
+		// }
 	}
 
 }

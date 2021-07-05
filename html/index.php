@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet">
     <title>Início</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
@@ -20,6 +19,9 @@
     </script>
 </head>
 <body>
+    <?php
+        include('API.php');
+    ?>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <button class="novo">+ Novo</button>
@@ -43,13 +45,13 @@
         <div>
             <div class="box">
                 <div class="saldo-box">
-                    <script>
-                        $.getJSON('http://localhost:8000/wallet/?idWallet=1', function(data) {
-                            console.log(data);
-                            var result = data.saldo                      
-                            $(".saldo-box").html(result);
-                        });
-                    </script>
+                    <?php
+                        $returnData = callAPI("GET", "http://localhost:8000/wallet/?idWallet=1", false);
+                        $response = json_decode($returnData, true);
+                        // $errors = $response[‘response’][‘errors’];
+                        $data = $response["saldo"];
+                        echo $data;
+                    ?>
                 </div>
 
                 <h1 class="saldo">Saldo Atual</h1>

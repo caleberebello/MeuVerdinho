@@ -68,5 +68,30 @@ final class TransactionDAO extends Connection
         return $idTransaction;
     }
 
+    public function getUserTransactionsByType(int $idWallet, string $type)
+    {
+        $statement = $this->pdo
+            ->prepare(" SELECT
+                            carteira_id,
+                            descricao,
+                            valor,
+                            data_vencimento,
+                            recorrencia,
+                            categoria,
+                            situacao,
+                            tipo_registro
+                        FROM adm.transacao
+                        WHERE carteira_id = :carteira_id
+                            AND tipo_registro = :tipo_registro
+                        ");
+        $statement->bindValue('carteira_id', $idWallet);
+        $statement->bindValue('tipo_registro', $type);
+        $statement->execute();
+        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    
+        return $result;
+    }
+
+
     
 }

@@ -16,6 +16,7 @@
 
     <?php
         include('cadastro-form.php');
+        include('API.php');
     ?>
     <h2>Cadastro</h2>
     <p><span class="error">* required field</span></p>
@@ -37,11 +38,27 @@
     <span class="error">* <?php echo $birthErr;?></span>
     <br><br>
 
-    Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+    Senha: <input type="text" name="senha" value="<?php echo $password;?>">
+    <span class="error">* <?php echo $passwordErr;?></span>
     <br><br>
 
-    <input type="submit" name="submit" value="Submit">  
+    <input type="submit" name="submit" value="Cadastrar">  
     </form>
-
+    <?php
+    $data = [
+        "username" => $username,
+        "login" => $email,
+        "password" => $password,
+        "nome" => $name,
+        "data_nascimento" => $birth,
+        "telefone" => null,
+        "img_path" => null
+    ];
+    $apiCall = callAPI("POST", "http:/localhost:8000/user", json_encode($data));
+    $response = json_decode($apiCall, true);
+    // $errors = $response["response"]["errors"];
+    $data = $response;
+    echo $data;
+    ?>
 </body>
 </html>

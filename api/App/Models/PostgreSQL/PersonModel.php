@@ -7,7 +7,7 @@ class PersonModel
 	private $idPerson;
 	private $name;
 	private $birthDate;
-	private $phone;
+	private $phone=null;
 	private $imgPath=null;
 
     /**
@@ -73,7 +73,7 @@ class PersonModel
 	/**
      * Get the value of phone
      */ 
-    public function getPhone(): string
+    public function getPhone()
     {
         return $this->phone;
     }
@@ -83,7 +83,7 @@ class PersonModel
      *
      * @return  self
      */ 
-    public function setPhone($phone): PersonModel
+    public function setPhone($phone)
     {
         $this->phone = $phone;
 

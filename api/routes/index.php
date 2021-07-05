@@ -42,6 +42,8 @@ $app->get('/wallet/[{idWallet}]', WalletController::class . ':getWalletById');
 $app->get('/wallet-user', WalletController::class . ':listWalletUser');
 
 $app->post('/transaction', TransactionController::class . ':registerTransaction');
+$app->get('/transaction-type', TransactionController::class . ':getUserTransactionsByType');
+$app->get('/transaction-total', TransactionController::class . ':getUserTotalTransactionsByType');
 
 
 //Need authentication
