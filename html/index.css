@@ -195,3 +195,7 @@ h1{
     box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.1);
     border-radius: 40px;
 }
+
+.error {
+    color: #FF0000;
+}
