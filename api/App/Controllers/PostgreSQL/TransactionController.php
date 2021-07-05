@@ -129,10 +129,10 @@ class TransactionController extends Connection
                 $wallet = $walletDAO->getWalletById($data['carteira_id']);
 
                 if($type === 'R'){
-                    $newBalance = $wallet[0]['saldo'] + $data['valor'];
+                    $newBalance = $wallet['saldo'] + $data['valor'];
 
                 }else if($type === 'D'){
-                    $newBalance = $wallet[0]['saldo'] - $data['valor'];
+                    $newBalance = $wallet['saldo'] - $data['valor'];
 
                 }else{
                     $this->pdo->rollBack();
