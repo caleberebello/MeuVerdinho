@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet">
-    <title>Início</title>
+    <title>Histórico</title>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
@@ -33,12 +33,12 @@
       </div>
       
       <div id="main">
-        <header>
+        <div class="header">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
             <button class="redondo">Este mês</button>
             <button class="redondo">Este ano</button>
             <button class="redondo">Desde o início</button>
-        </header>
+        </div>
         <div>
             <p>Resumo</p>
         </div>
@@ -57,17 +57,27 @@
                 <h1 class="saldo">Saldo Atual</h1>
             </div>
             <div class="box">
-                <button class="circulo1">
+                <button class="circulo1" onclick="window.location.href='#abrirModal1'">
                     +
                 </button>
                 <h1 class="receitas">Receitas</h1>
             </div>
             <div class="box">
-                <button class="circulo2">
+                <button class="circulo2" onclick="window.location.href='#abrirModal2'">
                     -
                 </button>
                 <h1 class="despesas">Despesas</h1>
             </div>
+        </div>
+
+        <div id="abrirModal1" class="modal">
+            <a href="#fechar" title="Fechar" class="fechar">x</a>
+            <h1>Nova Receita</h1>
+        </div>
+
+        <div id="abrirModal2" class="modal">
+            <a href="#fechar" title="Fechar" class="fechar">x</a>
+            <h1>Nova Despesa</h1>
         </div>
 
         <div>
