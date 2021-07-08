@@ -68,10 +68,10 @@ class TransactionController extends Connection
         $transactionDAO = new TransactionDAO();
 
         $dataRevenue = $transactionDAO->getUserTransactionsByType($idWallet, 'R');
-        $dataRevenue = $transactionDAO->getUserTransactionsByType($idWallet, 'D');
+        $dataExpense = $transactionDAO->getUserTransactionsByType($idWallet, 'D');
 
-        $totalRevenue = $this->getTotalTransaction($data, 'R');
-        $totalExpense = $this->getTotalTransaction($data, 'D');
+        $totalRevenue = $this->getTotalTransaction($dataRevenue, 'R');
+        $totalExpense = $this->getTotalTransaction($dataExpense, 'D');
 
         $result = [
             'message' => [
@@ -174,7 +174,7 @@ class TransactionController extends Connection
         $total = 0.0;
         foreach($data as $transaction){
             if($transaction['tipo_registro'] === $type)
-                $totalRevenue += $transaction['valor'];
+                $total += $transaction['valor'];
         }
 
         return $total;
