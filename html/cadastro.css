@@ -1,6 +1,33 @@
-header{
+.header {
+    overflow: hidden;
     background-color: #369426;
-    padding: 20px;
+    padding: 20px 10px;
+    height: 104px;
+    margin: -8px;
+}
+
+.logo {
+    height: 100px;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0.4;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.container {
+    align-items: center;
+    justify-content: center;
+}
+
+.header .container{
+    display: flex;
 }
 
 .mao{
@@ -8,10 +35,10 @@ header{
 }
 
 .controle{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     margin-left: 196px;
-    margin-top: 223px;
+    margin-top: 153px;
 }
 
 .meuverdinho{
@@ -29,4 +56,9 @@ header{
     text-align: center;
 
     color: #006600;
+}
+
+.divisor{
+    border-left: 1px solid #006600;
+    width: 20px;
 }
