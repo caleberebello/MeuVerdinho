@@ -6,6 +6,7 @@ use App\Controllers\PostgreSQL\AttendanceController;
 use App\Controllers\PostgreSQL\UserController;
 use App\Controllers\PostgreSQL\TransactionController;
 use App\Controllers\PostgreSQL\WalletController;
+use App\Controllers\PostgreSQL\GoalController;
 use Tuupola\Middleware\JwtAuthentication;
 
 $app = new \Slim\App(slimConfiguration());
@@ -44,6 +45,9 @@ $app->get('/wallet-user', WalletController::class . ':listWalletUser');
 $app->post('/transaction', TransactionController::class . ':registerTransaction');
 $app->get('/transaction-type', TransactionController::class . ':getUserTransactionsByType');
 $app->get('/transaction-total', TransactionController::class . ':getUserTotalTransactionsByType');
+
+$app->post('/goal', GoalController::class . ':registerGoal');
+$app->get('/goal', GoalController::class . ':listGoals');
 
 
 //Need authentication
@@ -88,7 +92,7 @@ $app->group('',function() use ($app){
         "secure" => false,
         "secret" => getenv('JWT_SECRET_KEY'),
         "attribute" => "jwt",
-        "relaxed" => ["localhost", "blood.labtecs.com.br"],
+        "relaxed" => ["localhost", "my-green.herokuapp.com"],
         "error" => function ($response, $arguments) {
             $data["status"] = "error";
             $data["message"] = $arguments["message"];
