@@ -271,6 +271,7 @@ p{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 30px;
     margin-right: 20px;
     width: 312px;
     height: 113px;
@@ -324,6 +325,13 @@ h1{
     line-height: 37px;
     font-weight: 700;
     color: var(--primary);
+}
+
+.saldo1{
+    font-size: 30px;
+    line-height: 37px;
+    font-weight: 700;
+    color: #A27430;
 }
 
 .txt-saldo{
