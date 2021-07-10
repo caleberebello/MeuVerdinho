@@ -4,30 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="historico_receita.css" rel="stylesheet">
-    <title>Inicio</title>
+    <title>Histórico</title>
     <script>
         function openNav() {
-            document.getElementById("mySidebar").style.width = "230px";
-            document.getElementById("main").style.marginLeft = "230px";
+            document.getElementById("mySidebar").style.width = "280px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.querySelector(".openbtn").style.display = "none";
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
+            document.querySelector(".openbtn").style.display = "initial";
         }
     </script>
 </head>
 <body>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="group-user">
+            <img src="img/user.png" class="img-redonda">
+            <div>
+                <p class="nome">Amanda Castro</p>
+                <p class="usuario">@amanda_cs</p>
+            </div>
+            <img src="img/logout.png" class="logout">
+        </div>
+        <div class="divisor"></div>
+        <div class="carteira">
+            <img src="img/Active.png" alt="carteira">
+            <div class="txt-carteira">
+                <p>Minha carteira</p>
+                <p>Carteira própria</p>
+            </div>
+            <div class="add-green"><p>+</p></div>
+            
+        </div>
+        <div class="divisor"></div>
         <button class="novo">+ Novo</button>
-        <a href="#">Resumo</a>
-        <a href="#">Pagamentos</a>
-        <a href="#">Transações</a>
-        <a href="#">Metas</a>
-        <a href="#">Configurações</a>
-      </div>
+        <ul class="menu">
+            <li class="active"><a href=""><img src="img/resumo.png" class="icon-menu">Resumo</a></li>
+            <li><a href=""><img src="img/pagamentos.png" class="icon-menu">Pagamentos</a></li>
+            <li><a href=""><img src="img/transacoes.png" class="icon-menu">Transações</a></li>
+            <li><a href=""><img src="img/metas.png" class="icon-menu">Metas</a></li>
+            <li><a href=""><img src="img/configuracoes.png" class="icon-menu">Configurações</a></li>
+        </ul>
+    </div>
       
       <div id="main">
         <div class="header">
@@ -36,18 +64,21 @@
             <button class="redondo">Este ano</button>
             <button class="redondo">Desde o início</button>
         </div>
-        <div>
-            <p style="display: inline-block; margin-right: 650px;">Receitas</p>
-            <div class="box">
-                <h1 class="receitas">Receitas</h1>
-            </div>
-            <div class="box">
-                <h1 class="despesas">Despesas</h1>
+        <div class="container">
+            <p style="margin-top: 65px; margin-right: 130px; margin-left: 95px;">Relatório</p>
+            <div class="group-box">
+                <div class="box">
+                    <h1 class="txt-saldo">Receitas Recebidas</h1>
+                    <p class="saldo">R$ 8317.00</p>
+                </div>
+                <div class="box">
+                    <h1 class="txt-saldo">Receitas Pendentes</h1>
+                    <p class="saldo1">R$ 8317.00</p>
+                </div>
             </div>
         </div>
-
         <div class="box-grande">
-            <button class="baixar">BAIXAR</button>
+
         </div>
     
 </body>
