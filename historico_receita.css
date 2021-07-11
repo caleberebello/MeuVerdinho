@@ -545,7 +545,7 @@ h1{
 }
 
 .box-grande{
-    width: 976px;
+    width: 1100px;
     height: 543px;
     margin: auto;
     margin-left: 398px; 
@@ -554,4 +554,29 @@ h1{
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 9px 50px rgba(0, 0, 0, 0.1);
     border-radius: 40px;
+}
+
+.texto {
+    display: inline-flex;
+}
+
+.button{
+    background: #343434;
+    box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 45px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.oloco {
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    margin-left: 500px;
+    margin-top: 370px;
 }

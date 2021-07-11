@@ -60,25 +60,41 @@
       <div id="main">
         <div class="header">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
-            <button class="redondo">Este mês</button>
-            <button class="redondo">Este ano</button>
-            <button class="redondo">Desde o início</button>
+            <div class="container">
+                <button class="redondo btn-filtro active">Este mês</button>
+                <button class="redondo btn-filtro">Este ano</button>
+                <button class="redondo btn-filtro">Desde o início</button>
+            </div>
         </div>
-        <div class="container">
-            <p style="margin-top: 65px; margin-right: 130px; margin-left: 95px;">Relatório</p>
-            <div class="group-box">
-                <div class="box">
-                    <h1 class="txt-saldo">Receitas Recebidas</h1>
-                    <p class="saldo">R$ 8317.00</p>
-                </div>
-                <div class="box">
-                    <h1 class="txt-saldo">Receitas Pendentes</h1>
-                    <p class="saldo1">R$ 8317.00</p>
+        <div class="content">
+            <div class="container">
+                <p style="margin-top: 65px; margin-right: 130px; margin-left: 95px;">Relatório</p>
+                <div class="group-box">
+                    <div class="box">
+                        <h1 class="txt-saldo">Receitas Recebidas</h1>
+                        <p class="saldo">R$ 8317.00</p>
+                    </div>
+                    <div class="box">
+                        <h1 class="txt-saldo">Receitas Pendentes</h1>
+                        <p class="saldo1">R$ 8317.00</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="box-grande">
-
+            <div class="texto">
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Situação</p>
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Data</p>
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Descrição</p>
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Categoria</p>
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Conta</p>
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Valor</p>
+                <p style="font-size: 16px; font-style: normal; margin: 50px;">Ação</p>
+            </div>
+            <div class="divisor"></div>
+            <div class="oloco">
+                <button class="button">BAIXAR</button>
+            </div>
         </div>
     
 </body>
