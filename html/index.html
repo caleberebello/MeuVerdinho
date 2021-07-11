@@ -26,10 +26,6 @@
     </script>
 </head>
 <body>
-    <?php
-        include('API.php');
-        include('receita-form.php');
-    ?>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="group-user">
@@ -79,15 +75,7 @@
                 <div class="group-box">
                     <div class="box">
                         <h1 class="txt-saldo">Saldo Atual</h1>
-
-                        <?php
-                        $returnData = callAPI("GET", $url . "/wallet/?idWallet=1", false);
-                        $response = json_decode($returnData, true);
-                        // $errors = $response[‘response’][‘errors’];
-                        $data = number_format(floatval($response["saldo"]), 2, ',', '.');
-                        ?>
-
-                        <p class="saldo">R$ <?=$data?></p>
+                        <p class="saldo">R$ 8317,00</p>
                     </div>
                     <div class="box">
                         
@@ -98,19 +86,8 @@
                             <h1 class="receitas">Receitas</h1> 
                             <p>Previsto</p>
                         </div>
-
-                        <?php
-                        $data = [
-                            'carteira_id' => 1
-                        ];
-
-                        $returnData = callAPI("GET", $url . "/transaction-total", json_encode($data));
-                        $response = json_decode($returnData, true);
-                        // $errors = $response[‘response’][‘errors’];
-                        $data = number_format(floatval($response['result']['total_receita']), 2, ',', '.');
-                        ?>
                         
-                        <p class="saldo-previsto">R$ <?=$data?></p>
+                        <p class="saldo-previsto">R$120</p>
                     </div>
     
                     <div class="box">
@@ -127,17 +104,7 @@
                         </div>
     
                         <div>
-                            <?php
-                            $data = [
-                                'carteira_id' => 1
-                            ];
-
-                            $returnData = callAPI("GET", $url . "/transaction-total", json_encode($data));
-                            $response = json_decode($returnData, true);
-                            // $errors = $response[‘response’][‘errors’];
-                            $data = number_format(floatval($response['result']['total_despesa']), 2, ',', '.');
-                            ?>
-                            <p class="saldo-previsto">R$ <?=$data?></p>
+                            <p class="saldo-previsto">R$120</p>
                         </div>
                         
                     </div>
@@ -149,18 +116,8 @@
 
                 <div class="group-box">
                     <div class="box">
-                        <?php
-                            $data = [
-                                'carteira_id' => 1
-                            ];
-
-                            $returnData = callAPI("GET", $url . "/goal-wallet", json_encode($data));
-                            $response = json_decode($returnData, true);
-                            // $errors = $response[‘response’][‘errors’];
-                            $data = $response['result'][0];
-                        ?>
-                        <h1 class="txt-saldo"><?=$data['descricao']?></h1>
-                        <p class="saldo">R$ <?=number_format(floatval($data['valor']), 2, ',', '.')?></p>
+                        <h1 class="txt-saldo">Viajemp/ Disney</h1>
+                        <p class="saldo">R$ 2.000,00</p>
                     </div>
                     <div class="box gray">
                         <img src="img/add2.png">
@@ -204,109 +161,11 @@
         <div id="abrirModal1" class="modal">
             <a href="#fechar" title="Fechar" class="fechar">x</a>
             <h1>Nova Receita</h1>
-
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-
-            Valor: <input type="text" name="valor" value="<?php echo $value;?>">
-            <span class="error">* <?php echo $valueErr;?></span>
-            <br><br>
-
-            Descricao: <input type="text" name="descricao" value="<?php echo $description;?>">
-            <span class="error">* <?php echo $descriptionErr;?></span>
-            <br><br>
-
-            Data de vencimento: <input type="text" name="data_vencimento" value="<?php echo $expire;?>">
-            <span class="error">* <?php echo $expireErr;?></span>
-            <br><br>
-
-            Recorrencia: <input type="text" name="recorrencia" value="<?php echo $recurrence;?>">
-            <span class="error">* <?php echo $recurrenceErr;?></span>
-            <br><br>
-
-            Categoria: <input type="text" name="categoria" value="<?php echo $category;?>">
-            <span class="error">* <?php echo $categoryErr;?></span>
-            <br><br>
-
-            Conta: <input type="text" name="carteira" value="<?php echo $wallet;?>">
-            <span class="error">* <?php echo $walletErr;?></span>
-            <br><br>
-
-            Situacao: <input type="text" name="situacao" value="<?php echo $situation;?>">
-            <span class="error">* <?php echo $situationErr;?></span>
-            <br><br>
-
-            <input type="submit" name="submit" value="Salvar">  
-            </form>
-            <?php
-            $data = [
-                "valor" => floatval($value),
-                "descricao" => $description,
-                "data_vencimento" => $expire,
-                "recorrencia" => $recurrence,
-                "categoria" => intval($category),
-                "carteira_id" => intval($wallet),
-                "situacao" => $situation,
-                "tipo_registro" => "R"
-            ];
-            $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
-            $response = json_decode($apiCall, true);
-            // $errors = $response["response"]["errors"];
-            $data = $response;
-            ?>
         </div>
 
         <div id="abrirModal2" class="modal">
             <a href="#fechar" title="Fechar" class="fechar">x</a>
             <h1>Nova Despesa</h1>
-
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-
-            Valor: <input type="text" name="valor" value="<?php echo $value;?>">
-            <span class="error">* <?php echo $valueErr;?></span>
-            <br><br>
-
-            Descricao: <input type="text" name="descricao" value="<?php echo $description;?>">
-            <span class="error">* <?php echo $descriptionErr;?></span>
-            <br><br>
-
-            Data de vencimento: <input type="text" name="data_vencimento" value="<?php echo $expire;?>">
-            <span class="error">* <?php echo $expireErr;?></span>
-            <br><br>
-
-            Recorrencia: <input type="text" name="recorrencia" value="<?php echo $recurrence;?>">
-            <span class="error">* <?php echo $recurrenceErr;?></span>
-            <br><br>
-
-            Categoria: <input type="text" name="categoria" value="<?php echo $category;?>">
-            <span class="error">* <?php echo $categoryErr;?></span>
-            <br><br>
-
-            Conta: <input type="text" name="carteira" value="<?php echo $wallet;?>">
-            <span class="error">* <?php echo $walletErr;?></span>
-            <br><br>
-
-            Situacao: <input type="text" name="situacao" value="<?php echo $situation;?>">
-            <span class="error">* <?php echo $situationErr;?></span>
-            <br><br>
-
-            <input type="submit" name="submit" value="Salvar">  
-            </form>
-            <?php
-            $data = [
-                "valor" => floatval($value),
-                "descricao" => $description,
-                "data_vencimento" => $expire,
-                "recorrencia" => $recurrence,
-                "categoria" => intval($category),
-                "carteira_id" => intval($wallet),
-                "situacao" => $situation,
-                "tipo_registro" => "D"
-            ];
-            $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
-            $response = json_decode($apiCall, true);
-            // $errors = $response["response"]["errors"];
-            $data = $response;
-            ?>
         </div>
 
         

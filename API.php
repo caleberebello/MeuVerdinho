@@ -1,6 +1,7 @@
 <?php
   
-$url = 'http://localhost:8080/';
+$url = 'https://my-green-backend.herokuapp.com/index.php';
+$urlTest = 'http://localhost:8000';
 $data = [
     'collection'  => 'RequiredAPI'
 ];
@@ -18,6 +19,11 @@ function callAPI($method, $url, $data) {
             break;
         case "PUT":
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "GET":
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
             if ($data)
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             break;
