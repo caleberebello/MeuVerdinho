@@ -58,11 +58,10 @@
         "telefone" => null,
         "img_path" => null
     ];
-    $apiCall = callAPI("POST", "http:/localhost:8000/user", json_encode($data));
+    $apiCall = callAPI("POST", $url . "/user", json_encode($data));
     $response = json_decode($apiCall, true);
     // $errors = $response["response"]["errors"];
     $data = $response;
-    echo $data;
     ?>
 </body>
 </html>
