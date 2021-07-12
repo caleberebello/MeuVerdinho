@@ -88,7 +88,7 @@
                         <p class="saldo">R$ <?=$data?></p>
                     </div>
                     <div class="box">
-                        <h1 class="txt-saldo">Receitas Pendentes</h1>
+                        <h1 class="txt-saldo1">Receitas Pendentes</h1>
                         <p class="saldo1">R$ <?=$data?></p>
                     </div>
                 </div>
@@ -135,6 +135,7 @@
                     <?php endforeach; ?>
                 </table>
             </div>
+            <div class="divisor"></div>
             <div class="oloco">
                 <button class="button">BAIXAR</button>
             </div>

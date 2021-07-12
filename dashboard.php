@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="dashboard.css" rel="stylesheet">
-    <title>Histórico</title>
+    <title>Dashboard</title>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "280px";
@@ -32,8 +32,13 @@
         <div class="group-user">
             <img src="img/user.png" class="img-redonda">
             <div>
-                <p class="nome">Amanda Castro</p>
-                <p class="usuario">@amanda_cs</p>
+                <?php
+                    $returnData = callAPI("GET", $url . "/user", false);
+                    $response = json_decode($returnData, true);
+                    $data = $response['result'][1];
+                ?>
+                <p class="nome"><?=$data['nome']?></p>
+                <p class="usuario"><?=$data['username']?></p>
             </div>
             <img src="img/logout.png" class="logout">
         </div>
@@ -75,6 +80,7 @@
                 </div>
                 <div class="group-box">
                     <div class="box">
+                        <a href="historico_receita.php"></a>
                         <h1 class="txt-saldo">Saldo Atual</h1>
                         <?php
                             $returnData = callAPI("GET", $url . "/wallet/?idWallet=1", false);

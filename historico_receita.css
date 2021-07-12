@@ -14,7 +14,7 @@
 }
 
 /* Font Default */
-html, body, main, p, h1, a, button{
+html, body, main, p, h1, a, button, table, tr, td{
     font-family: 'Montserrat', sans-serif;;
 }
 
@@ -268,9 +268,8 @@ p{
 }
 
 .box{
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 30px;
     margin-right: 20px;
     width: 312px;
@@ -311,11 +310,6 @@ p{
     align-items: flex-start;
 }
 
-h1{
-    font-size: 20px;
-    text-align: center;
-}
-
 .box:first-of-type h1{
     text-align: left;
 }
@@ -336,6 +330,11 @@ h1{
 
 .txt-saldo{
     font-size: 17px;
+}
+
+.txt-saldo1{
+    font-size: 17px;
+    margin-top: 10px;
 }
 
 .circulo1{
@@ -578,5 +577,22 @@ h1{
     align-items: center;
     display: inline-block;
     margin-left: 500px;
-    margin-top: 370px;
+    margin-top: 20px;
+}
+
+tr {
+    background: #F1F1F1;
+    text-align: center;
+}
+
+td {
+    width: 160px;
+    height: 63px;
+}
+
+.itens {
+    overflow-y: scroll;
+    align-items: center;
+    justify-content: center;
+    height: 340px;
 }
