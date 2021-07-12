@@ -8,60 +8,106 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <img class="logo" src="Ativo 5x1 1.png">
-            <div class="divisor"></div>
-            <p>Meu verdinho</p>
-        </div>
-    </div>
-    <h1 class="controle">Controle seus gastos hoje, para colher amanhã.</h1>
-    <img class="mao" src="mãos.png">
-
     <?php
         include('cadastro-form.php');
         include('API.php');
     ?>
-    <h2>Cadastro</h2>
-    <p><span class="error">* required field</span></p>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+    <header>
+        <img src="img/logo-header.png" alt="">
+        <div class="divisor">
+        </div>
+        <h1 class="meuverdinho">Meu<br> Verdinho</h1>
+    </header>
+    <main>
+        <div class="content">
+            <div class="detalhe-body">
+                <svg width="336" height="268" viewBox="0 0 336 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="336" height="268">
+                    <rect width="336" height="268" fill="#C4C4C4"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                    <circle cx="160.203" cy="-16.3805" r="176" transform="rotate(-59.8223 160.203 -16.3805)" fill="#683A25"/>
+                    <circle cx="-4" cy="91" r="176" fill="#CEAA9A"/>
+                    <circle cx="-10.8152" cy="-51.8148" r="204.648" transform="rotate(24.5547 -10.8152 -51.8148)" fill="url(#paint0_linear)"/>
+                    </g>
+                    <defs>
+                    <linearGradient id="paint0_linear" x1="197.783" y1="-49.5575" x2="-304.764" y2="-83.7326" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#42A831"/>
+                    <stop offset="0.687545" stop-color="#285521"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="chamada">
+                <h1 class="controle">Controle seus gastos hoje,<br> para colher amanhã.</h1>
+                <img class="mao" src="mãos.png">
+            </div>
 
-    Username: <input type="text" name="username" value="<?php echo $username;?>">
-    <span class="error">* <?php echo $usernameErr;?></span>
-    <br><br>
+            <div class="formulario">
+                <div class="links">
+                    <ul>
+                        <li><a href="#">ENTRAR</a></li>
+                        <li><a href="#">CADASTRAR</a></li>
+                    </ul>
+                </div>
 
-    Name: <input type="text" name="name" value="<?php echo $name;?>">
-    <span class="error">* <?php echo $nameErr;?></span>
-    <br><br>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <div class="group-input">
+                        <label for="username">Nome de Usuário</label>
+                        <div class="input">
+                            <input id="username" type="text" placeholder="amanda_cs" name="username" value="<?php echo $username;?>">
+                        </div>
+                        
+                    </div>
 
-    E-mail: <input type="text" name="email" value="<?php echo $email;?>">
-    <span class="error">* <?php echo $emailErr;?></span>
-    <br><br>
+                    <div class="group-input">
+                        <label for="name">Nome</label>
+                        <input id="name" type="text" placeholder="Amanda" name="name" value="<?php echo $name;?>">
+                    </div>
 
-    Data de nascimento: <input type="text" name="dataNascimento" value="<?php echo $birth;?>">
-    <span class="error">* <?php echo $birthErr;?></span>
-    <br><br>
+                    <div class="group-input">
+                        <label for="secondName">Sobrenome</label>
+                        <input id="secondName" type="text" placeholder="Castro Silva">
+                    </div>
 
-    Senha: <input type="text" name="senha" value="<?php echo $password;?>">
-    <span class="error">* <?php echo $passwordErr;?></span>
-    <br><br>
+                    <div class="group-input">
+                        <label for="birthday">Data de Nascimento</label>
+                        <input id="birthday" type="text" placeholder="29-02-1992" name="dataNascimento" value="<?php echo $birth;?>">
+                    </div>
 
-    <input type="submit" name="submit" value="Cadastrar">  
-    </form>
-    <?php
-    $data = [
-        "username" => $username,
-        "login" => $email,
-        "password" => $password,
-        "nome" => $name,
-        "data_nascimento" => $birth,
-        "telefone" => null,
-        "img_path" => null
-    ];
-    $apiCall = callAPI("POST", $url . "/user", json_encode($data));
-    $response = json_decode($apiCall, true);
-    // $errors = $response["response"]["errors"];
-    $data = $response;
-    ?>
+                    <div class="group-input">
+                        <label for="email">E-mail</label>
+                        <input id="email" type="text" placeholder="exemplo@gmail.com" name="email" value="<?php echo $email;?>">
+                    </div>
+
+                    <div class="group-input">
+                        <label for="password">Senha</label>
+                        <input id="password" type="password" placeholder="******" name="senha" value="<?php echo $password;?>">
+                    </div>
+
+                    <div class="cadastrar">
+                        <a href="dashboard.php">
+                        <input type="submit" name="submit" value="CADASTRAR" onClick="registerUser()">  
+                    </div>
+                </form>
+                <?php
+                $data = [
+                    "username" => $username,
+                    "login" => $email,
+                    "password" => $password,
+                    "nome" => $name,
+                    "data_nascimento" => $birth,
+                    "telefone" => null,
+                    "img_path" => null
+                ];
+                $apiCall = callAPI("POST", $url . "/user", json_encode($data));
+                $response = json_decode($apiCall, true);
+                // $errors = $response["response"]["errors"];
+                $data = $response;
+                ?>
+            </div>
+        </div>
+        
+    </main>
 </body>
 </html>
