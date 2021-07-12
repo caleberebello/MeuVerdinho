@@ -34,8 +34,13 @@
         <div class="group-user">
             <img src="img/user.png" class="img-redonda">
             <div>
-                <p class="nome">Amanda Castro</p>
-                <p class="usuario">@amanda_cs</p>
+                <?php
+                    $returnData = callAPI("GET", $url . "/user", false);
+                    $response = json_decode($returnData, true);
+                    $data = $response['result'][1];
+                ?>
+                <p class="nome"><?=$data['nome']?></p>
+                <p class="usuario"><?=$data['username']?></p>
             </div>
             <img src="img/logout.png" class="logout">
         </div>

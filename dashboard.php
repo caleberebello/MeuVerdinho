@@ -208,7 +208,7 @@
             <div class="modal-content">
                 <a href="#fechar" title="Fechar" class="fechar">x</a>
                 <div class="formulario receita">
-                    <h1 class="receita-despesa">Nova Receita</h1>
+                    <h1 class="receita-title">Nova Receita</h1>
 
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <div class="group-input">
