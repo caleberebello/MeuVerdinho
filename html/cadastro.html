@@ -8,14 +8,85 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <img class="logo" src="Ativo 5x1 1.png">
-            <div class="divisor"></div>
-            <p>Meu verdinho</p>
+    <header>
+        <img src="img/logo-header.png" alt="">
+        <div class="divisor">
         </div>
-    </div>
-    <h1 class="controle">Controle seus gastos hoje, para colher amanhã.</h1>
-    <img class="mao" src="mãos.png">
+        <h1 class="meuverdinho">Meu<br> Verdinho</h1>
+    </header>
+    <main>
+        <div class="content">
+            <div class="detalhe-body">
+                <svg width="336" height="268" viewBox="0 0 336 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="336" height="268">
+                    <rect width="336" height="268" fill="#C4C4C4"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                    <circle cx="160.203" cy="-16.3805" r="176" transform="rotate(-59.8223 160.203 -16.3805)" fill="#683A25"/>
+                    <circle cx="-4" cy="91" r="176" fill="#CEAA9A"/>
+                    <circle cx="-10.8152" cy="-51.8148" r="204.648" transform="rotate(24.5547 -10.8152 -51.8148)" fill="url(#paint0_linear)"/>
+                    </g>
+                    <defs>
+                    <linearGradient id="paint0_linear" x1="197.783" y1="-49.5575" x2="-304.764" y2="-83.7326" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#42A831"/>
+                    <stop offset="0.687545" stop-color="#285521"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="chamada">
+                <h1 class="controle">Controle seus gastos hoje,<br> para colher amanhã.</h1>
+                <img class="mao" src="mãos.png">
+            </div>
+
+            <div class="formulario">
+                <div class="links">
+                    <ul>
+                        <li><a href="#">ENTRAR</a></li>
+                        <li><a href="#">CADASTRAR</a></li>
+                    </ul>
+                </div>
+
+                <div class="group-input">
+                    <label for="username">Nome de Usuário</label>
+                    <div class="input">
+                        <input id="username" type="text" placeholder="amanda_cs">
+                    </div>
+                    
+                </div>
+
+
+                <div class="group-input">
+                    <label for="name">Nome</label>
+                    <input id="name" type="text" placeholder="Amanda">
+                </div>
+
+                <div class="group-input">
+                    <label for="secondName">Sobrenome</label>
+                    <input id="secondName" type="text" placeholder="Castro Silva">
+                </div>
+
+                <div class="group-input">
+                    <label for="birthday">Data de Nascimento</label>
+                    <input id="birthday" type="text" placeholder="29-02-1992">
+                </div>
+
+                <div class="group-input">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="text" placeholder="amd.38@gmail.com">
+                </div>
+
+                <div class="group-input">
+                    <label for="password">Senha</label>
+                    <input id="password" type="password" placeholder="******">
+                </div>
+
+                <div class="cadastrar">
+                    <button >CADASTRAR</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
 </body>
 </html>

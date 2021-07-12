@@ -1,44 +1,73 @@
-.header {
-    overflow: hidden;
-    background-color: #369426;
-    padding: 20px 10px;
-    height: 104px;
-    margin: -8px;
+/* Reset css */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.logo {
-    height: 100px;
-    justify-content: center;
-    align-items: flex-start;
-    opacity: 0.4;
+/* Colors */
+:root{
+    --disable: #95A493;
+    --active: #FFFFFF;
+    --primary: #27771A;
+    --secondary: #683A25;
 }
 
-p {
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    font-size: 30px;
-    display: inline-block;
-    margin-top: 30px;
+/* Font Default */
+html, body, main, p, h1, a, button{
+    font-family: 'Montserrat', sans-serif;;
 }
 
-.container {
-    align-items: center;
-    justify-content: center;
+body{
+    background-color: #F6F9FC;
 }
 
-.header .container{
+header{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #369426;
+    padding: 20px;
+    overflow-y: hidden;
 }
 
-.mao{
-    margin-left: 196px;
+header img{
+    margin-bottom: -40px;
+}
+
+.divisor{
+    border-right: 2px solid #006600;
+    height: 58px;
+    margin: 0 15px;
+}
+
+main{
+    position: relative;
+}
+
+.content{
+    display: flex;
+    max-width: 1051px;
+    margin: auto;
+}
+
+main .detalhe-body{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+main .chamada{
+    padding-top: 215px;
 }
 
 .controle{
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    margin-left: 196px;
-    margin-top: 153px;
+    line-height: 36px;
+}
+
+.mao{
+    margin-top: 29px;
+    margin-left: -20px;
 }
 
 .meuverdinho{
@@ -53,12 +82,97 @@ p {
     font-size: 22.6995px;
     line-height: 21px;
 
-    text-align: center;
+    text-align: left;
 
     color: #006600;
 }
 
-.divisor{
-    border-left: 1px solid #006600;
-    width: 20px;
+.formulario{
+    margin-top: 215px;
+    margin-left: 179px;
+}
+
+.links ul{
+    display: flex;
+    justify-content: center;
+    padding: 0 31px 52px;
+}
+
+.links ul li{
+    margin-right: 81px;
+    list-style: none;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+}
+
+.links ul li:last-child::after{
+    content: "";
+    width: 100px;
+    height: 2px;
+    background-color: var(--primary);
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    margin-top: 19px;
+}
+
+.links ul li a{
+    color: #000000;
+    text-decoration: none;
+}
+
+.group-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.group-input label{
+    margin-bottom: 16px;
+}
+
+.input{
+    display: flex;
+}
+
+.input svg{
+    margin-left: -30px;
+}
+
+.group-input input{
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: #DEE1EF;
+    font-size: 14px;
+    line-height: 16px;
+    color: #7B807B;
+    width: 100%;
+    height: 30px;
+    padding-bottom: 13px;
+    background-color: transparent;
+}
+
+.group-input input:focus{
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--primary);
+    outline: none;
+}
+
+.cadastrar button{
+    background-image: url("../html/img/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 315px;
+    height: 72px;
+    background-color: transparent;
+    border-radius: 58px;
+    border-width: 0;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    box-shadow: 0px 8px 16px rgba(27, 57, 255, 0.2)
 }
