@@ -26,6 +26,9 @@
     </script>
 </head>
 <body>
+    <?php
+        include('API.php');
+    ?>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="group-user">
@@ -72,16 +75,42 @@
                 <div class="group-box">
                     <div class="box">
                         <h1 class="txt-saldo">Receitas Recebidas</h1>
-                        <p class="saldo">R$ 8317.00</p>
+                        <?php
+                            $data = [
+                                'carteira_id' => 1
+                            ];
+
+                            $returnData = callAPI("GET", $url . "/transaction-total", json_encode($data));
+                            $response = json_decode($returnData, true);
+                            // $errors = $response[‘response’][‘errors’];
+                            $data = number_format(floatval($response['result']['total_receita']), 2, ',', '.');
+                        ?>
+                        <p class="saldo">R$ <?=$data?></p>
                     </div>
                     <div class="box">
                         <h1 class="txt-saldo">Receitas Pendentes</h1>
-                        <p class="saldo1">R$ 8317.00</p>
+                        <p class="saldo1">R$ <?=$data?></p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="box-grande">
+            <?php
+                $data = [
+                    'carteira_id' => 1,
+                    'tipo_registro' => 'R'
+                ];
+
+                $revenueArray = [];
+
+                $returnData = callAPI("GET", $url . "/transaction-type", json_encode($data));
+                $response = json_decode($returnData, true);
+                // $errors = $response[‘response’][‘errors’];
+                $data = $response['result'];
+                foreach($data as $revenue){
+                    array_push($revenueArray, $revenue);
+                }
+            ?>
             <div class="texto">
                 <p style="font-size: 16px; font-style: normal; margin: 50px;">Situação</p>
                 <p style="font-size: 16px; font-style: normal; margin: 50px;">Data</p>
@@ -92,6 +121,20 @@
                 <p style="font-size: 16px; font-style: normal; margin: 50px;">Ação</p>
             </div>
             <div class="divisor"></div>
+            <div class="itens">
+                <table>
+                    <?php foreach($data as $revenue): ?>
+                        <tr>
+                            <td><?= $revenue['situacao']; ?></td>
+                            <td><?= $revenue['data_vencimento']; ?></td>
+                            <td><?= $revenue['descricao']; ?></td>
+                            <td><?= $revenue['categoria']; ?></td>
+                            <td><?= $revenue['carteira_id']; ?></td>
+                            <td><?= $revenue['valor']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
             <div class="oloco">
                 <button class="button">BAIXAR</button>
             </div>
