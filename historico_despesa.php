@@ -78,7 +78,7 @@
         </div>
         <div class="content">
             <div class="container">
-                <p style="margin-top: 65px; margin-right: 130px; margin-left: 95px;">Relatório</p>
+                <p style="margin-top: 65px; margin-right: 180px; margin-left: 95px;">Despesas</p>
                 <div class="group-box">
                     <div class="box">
                         <h1 class="txt-saldo">Despesas Pendentes</h1>

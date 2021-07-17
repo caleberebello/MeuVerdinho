@@ -79,7 +79,7 @@
                     <p class="title" >Resumo</p>
                 </div>
                 <div class="group-box">
-                    <div class="box">
+                    <div class="box" onclick="location.href='historico_geral.php'" style="cursor: pointer;">
                         <a href="historico_receita.php"></a>
                         <h1 class="txt-saldo">Saldo Atual</h1>
                         <?php
