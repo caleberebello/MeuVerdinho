@@ -90,7 +90,7 @@
                         ?>
                         <p class="saldo">R$ <?=$data?></p>
                     </div>
-                    <div class="box">
+                    <div class="box" onclick="location.href='historico_receita.php'" style="cursor: pointer;">
                         
                         <div class="circulo1" onclick="window.location.href='#abrirModal1'">
                             <img src="img/add.png">
@@ -115,7 +115,7 @@
                         <p class="saldo-previsto">R$ <?=$data?></p>
                     </div>
     
-                    <div class="box">
+                    <div class="box" onclick="location.href='historico_despesa.php'" style="cursor: pointer;">
                         <div>
                             <div class="circulo2" onclick="window.location.href='#abrirModal2'">
                                 <img src="img/add.png">
