@@ -125,7 +125,6 @@
                 <p style="font-size: 16px; font-style: normal; margin: 50px;">Categoria</p>
                 <p style="font-size: 16px; font-style: normal; margin: 50px;">Conta</p>
                 <p style="font-size: 16px; font-style: normal; margin: 50px;">Valor</p>
-                <p style="font-size: 16px; font-style: normal; margin: 50px;">Ação</p>
             </div>
             <div class="divisor"></div>
             <div class="itens">
