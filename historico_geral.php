@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="historico_receita.css" rel="stylesheet">
-    <title>Histórico de Receitas</title>
+    <link href="historico_geral.css" rel="stylesheet">
+    <title>Histórico Geral</title>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "280px";
@@ -78,10 +78,10 @@
         </div>
         <div class="content">
             <div class="container">
-                <p style="margin-top: 65px; margin-right: 180px; margin-left: 95px;">Receitas</p>
+                <p style="margin-top: 65px; margin-right: 400px; margin-left: 95px;">Relatório Geral</p>
                 <div class="group-box">
                     <div class="box">
-                        <h1 class="txt-saldo">Receitas Recebidas</h1>
+                        <h1 class="txt-saldo">Total</h1>
                         <?php
                             $data = [
                                 'carteira_id' => 1
@@ -93,10 +93,6 @@
                             $data = number_format(floatval($response['result']['total_receita']), 2, ',', '.');
                         ?>
                         <p class="saldo">R$ <?=$data?></p>
-                    </div>
-                    <div class="box">
-                        <h1 class="txt-saldo1">Receitas Pendentes</h1>
-                        <p class="saldo1">R$ <?=$data?></p>
                     </div>
                 </div>
             </div>

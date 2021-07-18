@@ -26,7 +26,7 @@ body{
 .header {
     display: flex;
     overflow: hidden;
-    background-color: #369426;
+    background-color: #9F0002;
     padding: 20px 10px;
     height: 104px;
 }
@@ -169,7 +169,7 @@ border-bottom-right-radius: 30px;
 .sidebar .carteira .add-green{
     width: 34px;
     height: 34px;
-    background-color: var(--primary);
+    background-color: #9F0002;
     border-radius: 50px;
     display: flex;
     justify-content: center;
@@ -196,7 +196,7 @@ border-bottom-right-radius: 30px;
 .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #369426;
+    background-color: #9F0002;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -319,14 +319,14 @@ p{
     font-size: 30px;
     line-height: 37px;
     font-weight: 700;
-    color: var(--primary);
+    color: #A27430;
 }
 
 .saldo1{
     font-size: 30px;
     line-height: 37px;
     font-weight: 700;
-    color: #A27430;
+    color: #9E0002;
 }
 
 .txt-saldo{
@@ -488,7 +488,7 @@ p{
     margin-top: 28px;
     width: 207px;
     height: 64px;
-    background: #48B137;
+    background: #9F0002;
     box-shadow: 0px 9px 50px rgba(0, 0, 0, 0.1);
     border-width: 0;
     border-radius: 40px;
@@ -513,7 +513,7 @@ p{
 
 .menu li{
     height: 76px;
-    color: #683A25;
+    color: #9F0002;
     display: flex;
     align-items: center;
 }
