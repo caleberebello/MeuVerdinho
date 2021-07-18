@@ -26,6 +26,48 @@
     <?php
         include('API.php');
         include('receita-form.php');
+
+        function registerRevenue(){
+            $data = [
+                "valor" => floatval($value),
+                "descricao" => $description,
+                "data_vencimento" => $expire,
+                "recorrencia" => $recurrence,
+                "categoria" => intval($category),
+                "carteira_id" => intval($wallet),
+                "situacao" => $situation,
+                "tipo_registro" => "R"
+            ];
+            $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
+            $response = json_decode($apiCall, true);
+            // $errors = $response["response"]["errors"];
+            $data = $response;
+        }
+
+        function registerExpense(){
+            $data = [
+                "valor" => floatval($value),
+                "descricao" => $description,
+                "data_vencimento" => $expire,
+                "recorrencia" => $recurrence,
+                "categoria" => intval($category),
+                "carteira_id" => intval($wallet),
+                "situacao" => $situation,
+                "tipo_registro" => "D"
+            ];
+            $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
+            $response = json_decode($apiCall, true);
+            // $errors = $response["response"]["errors"];
+            $data = $response;
+        }
+
+        if (isset($_POST['submitRevenue'])) {
+            registerRevenue();
+        }
+
+        if (isset($_POST['submitExpense'])) {
+            registerExpense();
+        }
     ?>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -265,25 +307,9 @@
                         </div>
 
                         <div class="salvar">
-                            <input type="submit" name="submit2" value="Salvar">  
+                            <input type="submit" name="submitRevenue" value="Salvar">  
                         </div>
                     </form>
-                    <?php
-                        $data = [
-                            "valor" => floatval($value),
-                            "descricao" => $description,
-                            "data_vencimento" => $expire,
-                            "recorrencia" => $recurrence,
-                            "categoria" => intval($category),
-                            "carteira_id" => intval($wallet),
-                            "situacao" => $situation,
-                            "tipo_registro" => "R"
-                        ];
-                        $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
-                        $response = json_decode($apiCall, true);
-                        // $errors = $response["response"]["errors"];
-                        $data = $response;
-                    ?>
                 </div>
                 
             </div>
@@ -351,25 +377,9 @@
                         </div>
 
                         <div class="salvar">
-                            <input type="submit" name="submit" value="Salvar">  
+                            <input type="submit" name="submitExpense" value="Salvar">  
                         </div>
                     </form>
-                    <?php
-                        $data = [
-                            "valor" => floatval($value),
-                            "descricao" => $description,
-                            "data_vencimento" => $expire,
-                            "recorrencia" => $recurrence,
-                            "categoria" => intval($category),
-                            "carteira_id" => intval($wallet),
-                            "situacao" => $situation,
-                            "tipo_registro" => "D"
-                        ];
-                        $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
-                        $response = json_decode($apiCall, true);
-                        // $errors = $response["response"]["errors"];
-                        $data = $response;
-                    ?>
                 </div>
                 
             </div>
