@@ -105,7 +105,7 @@
             <?php
                 $data = [
                     'carteira_id' => 1,
-                    'tipo_registro' => 'R'
+                    'tipo_registro' => 'D'
                 ];
 
                 $revenueArray = [];
