@@ -1,7 +1,7 @@
 <?php
 // define variables and set to empty values
 $usernameErr = $nameErr = $emailErr = $birthErr = $passwordErr = "";
-$username = $name = $email = $birth =  $password = "";
+$username = $name = $lastName = $email = $birth =  $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["username"])) {
@@ -15,16 +15,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// }
 	}
 
-	if (empty($_POST["name"])) {
+	if (empty($_POST["nome"])) {
 		$nameErr = "Name is required";
 	} else {
-		$name = test_input($_POST["name"]);
+		$name = test_input($_POST["nome"]);
 
 		// check if name only contains letters and whitespace
 		if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
 			$nameErr = "Only letters and white space allowed";
 		}
 	}
+
+	if (empty($_POST["sobrenome"])) {
+		$nameErr = "Name is required";
+	} else {
+		$lastNname = test_input($_POST["sobrenome"]);
+
+		// check if name only contains letters and whitespace
+		if (!preg_match("/^[a-zA-Z-' ]*$/",$lastName)) {
+			$nameErr = "Only letters and white space allowed";
+		}
+	}
+	
 	
 	if (empty($_POST["dataNascimento"])) {
 		$birthErr = "Data de nascimento is required";

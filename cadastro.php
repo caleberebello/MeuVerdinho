@@ -11,6 +11,27 @@
     <?php
         include('cadastro-form.php');
         include('API.php');
+
+        function registerUser($data){
+            $apiCall = callAPI("POST", $GLOBALS['local'] . "/user", json_encode($data));
+            $response = json_decode($apiCall, true);
+            // $errors = $response["response"]["errors"];
+
+            return $response;
+        }
+
+        if (isset($_POST['submit'])){
+            $data = [
+                "username" => $username,
+                "login" => $email,
+                "password" => $password,
+                "nome" => $name . " ". $lastName,
+                "data_nascimento" => $birth,
+                "telefone" => null,
+                "img_path" => null
+            ];
+            registerUser($data);
+        }
     ?>
     <header>
         <img src="img/logo-header.png" alt="">
@@ -62,12 +83,12 @@
 
                     <div class="group-input">
                         <label for="name">Nome</label>
-                        <input id="name" type="text" placeholder="Amanda" name="name" value="<?php echo $name;?>">
+                        <input id="name" type="text" placeholder="Amanda" name="nome" value="<?php echo $name;?>">
                     </div>
 
                     <div class="group-input">
                         <label for="secondName">Sobrenome</label>
-                        <input id="secondName" type="text" placeholder="Castro Silva">
+                        <input id="secondName" type="text" placeholder="Castro Silva" name="sobrenome" value="<?php echo $lastName;?>">
                     </div>
 
                     <div class="group-input">
@@ -86,24 +107,13 @@
                     </div>
 
                     <div class="cadastrar">
-                        <a href="dashboard.php">
-                        <input type="submit" name="submit" value="CADASTRAR" onClick="registerUser()">  
+                        <!-- <a href="dashboard.php"> -->
+                        <input type="submit" name="submit" value="CADASTRAR">  
                     </div>
                 </form>
                 <?php
-                $data = [
-                    "username" => $username,
-                    "login" => $email,
-                    "password" => $password,
-                    "nome" => $name,
-                    "data_nascimento" => $birth,
-                    "telefone" => null,
-                    "img_path" => null
-                ];
-                $apiCall = callAPI("POST", $url . "/user", json_encode($data));
-                $response = json_decode($apiCall, true);
-                // $errors = $response["response"]["errors"];
-                $data = $response;
+                
+                
                 ?>
             </div>
         </div>
