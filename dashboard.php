@@ -250,7 +250,7 @@
                 <div class="formulario receita">
                     <h1 class="receita-title">Nova Receita</h1>
 
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <div class="group-input">
                             <label for="valor">Valor</label>
                             <input id="valor" type="text" placeholder="R$ 0,00" name="valor" value="<?php echo $value;?>">
@@ -270,38 +270,38 @@
                         <div class="group-input">
                             <label for="date">Recorrência</label>
                             <div class="options">
-                                <div class="option1 active">Nenhuma</div>
-                                <div class="option1">Parcelada</div>
-                                <div class="option1">Mensal</div>
+                                <div class="option1 active" value="<?php $recurrence = 'N';?>">Nenhuma</div>
+                                <div class="option1" value="<?php $recurrence = 'P';?>">Parcelada</div>
+                                <div class="option1" value="<?php $recurrence = 'M';?>">Mensal</div>
                             </div>
-                            <input type="text" name="recorrencia" value="<?php echo $recurrence;?>">
+                            <input type="hidden" name="recorrencia" value="<?php echo $recurrence;?>">
                         </div>
 
                         <div class="group-input">
                             <label for="date">Categoria</label>
                             <select name="category" id="category" class="options">
-                                <option value="outros">Outros</option>
-                                <option value="não sei">Não Sei</option>
+                                <option value="<?php $category = 1;?>">Outros</option>
+                                <!-- <option value="não sei">Não Sei</option> -->
                             </select>
-                            <input type="text" name="categoria" value="<?php echo $category;?>">
+                            <input type="hidden" name="categoria" value="<?php echo $category;?>">
                         </div>
 
                         <div class="group-input">
                             <label for="date">Conta</label>
                             <select name="category" id="category" class="options">
-                                <option value="minha conta">Minha Conta</option>
-                                <option value="não sei">Não Sei</option>
+                                <option value="<?php $wallet = 1;?>">Minha Conta</option>
+                                <!-- <option value="não sei">Não Sei</option> -->
                             </select>
-                            <input type="text" name="carteira" value="<?php echo $wallet;?>">
+                            <input type="hidden" name="carteira" value="<?php echo $wallet;?>">
                         </div>
 
                         <div class="group-input">
                             <label for="situation">Situação</label>
                             <div id="situation" class="options">
-                                <div class="option2">A pagar</div>
-                                <div class="option2 active">Pago</div>
+                                <div class="option2" value="<?php $situation = 'A';?>">A pagar</div>
+                                <div class="option2 active" value="<?php $situation = 'P';?>">Pago</div>
                             </div>
-                            <input type="text" name="situacao" value="<?php echo $situation;?>">
+                            <input type="hidden" name="situacao" value="<?php echo $situation;?>">
                         </div>
 
                         <div class="salvar">
