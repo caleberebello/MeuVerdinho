@@ -13,7 +13,7 @@
         include('API.php');
     ?>
     <header>
-        <img src="img/logo-header.png" alt="">
+        <img src="img/logo-header.png" alt="" style="height: 100px;">
         <div class="divisor">
         </div>
         <h1 class="meuverdinho">Meu<br> Verdinho</h1>
