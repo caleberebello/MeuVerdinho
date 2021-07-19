@@ -1,7 +1,7 @@
 <?php
   
-$url = 'https://my-green-backend.herokuapp.com/index.php';
-$urlTest = 'http://localhost:8000';
+$GLOBALS['url'] = 'https://my-green-backend.herokuapp.com/index.php';
+$GLOBALS['local'] = 'http://localhost:8000';
 $data = [
     'collection'  => 'RequiredAPI'
 ];

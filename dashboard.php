@@ -27,7 +27,15 @@
         include('API.php');
         include('receita-form.php');
 
-        function registerRevenue(){
+        function registerTransaction($data){
+            $apiCall = callAPI("POST", $GLOBALS['url'] . "/transaction", json_encode($data));
+            $response = json_decode($apiCall, true);
+            // $errors = $response["response"]["errors"];
+            $data = $response;
+            
+        }
+
+        if (isset($_POST['submitRevenue'])) {
             $data = [
                 "valor" => floatval($value),
                 "descricao" => $description,
@@ -38,13 +46,10 @@
                 "situacao" => $situation,
                 "tipo_registro" => "R"
             ];
-            $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
-            $response = json_decode($apiCall, true);
-            // $errors = $response["response"]["errors"];
-            $data = $response;
+            registerTransaction($data);
         }
 
-        function registerExpense(){
+        if (isset($_POST['submitExpense'])) {
             $data = [
                 "valor" => floatval($value),
                 "descricao" => $description,
@@ -55,18 +60,7 @@
                 "situacao" => $situation,
                 "tipo_registro" => "D"
             ];
-            $apiCall = callAPI("POST", $url . "/transaction", json_encode($data));
-            $response = json_decode($apiCall, true);
-            // $errors = $response["response"]["errors"];
-            $data = $response;
-        }
-
-        if (isset($_POST['submitRevenue'])) {
-            registerRevenue();
-        }
-
-        if (isset($_POST['submitExpense'])) {
-            registerExpense();
+            registerTransaction($data);
         }
     ?>
     <div id="mySidebar" class="sidebar">
@@ -193,20 +187,24 @@
                 </div>
 
                 <div class="group-box">
-                    <div class="box">
-                        <?php
-                            $data = [
-                                'carteira_id' => 1
-                            ];
+                    <?php
+                        $data = [
+                            'carteira_id' => 1
+                        ];
 
-                            $returnData = callAPI("GET", $url . "/goal-wallet", json_encode($data));
-                            $response = json_decode($returnData, true);
-                            // $errors = $response[‘response’][‘errors’];
-                            $data = $response['result'][0];
-                        ?>
-                        <h1 class="txt-saldo"><?=$data['descricao']?></h1>
-                        <p class="saldo">R$ <?=number_format(floatval($data['valor']), 2, ',', '.')?></p>
-                    </div>
+                        $returnData = callAPI("GET", $url . "/goal-wallet", json_encode($data));
+                        $response = json_decode($returnData, true);
+                        // $errors = $response[‘response’][‘errors’];
+                        $data = $response['result'];
+                    ?>
+                      
+                    <?php foreach($data as $goal): ?>
+                        <div class="goal-box">
+                            <h1 class="txt-saldo"><?=$goal['descricao']?></h1>
+                            <p class="saldo">R$ <?=number_format(floatval($goal['valor']), 2, ',', '.')?></p>
+                        </div>
+                    <?php endforeach; ?>
+
                     <div class="box gray">
                         <img src="img/add2.png">
                     </div>
@@ -322,7 +320,7 @@
                 <div class="formulario despesa">
                     <h1 class="despesa-title">Nova Despesa</h1>
 
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <div class="group-input">
                             <label for="valor">Valor</label>
                             <input id="valor" type="text" placeholder="R$ 0,00" name="valor" value="<?php echo $value;?>">
@@ -342,42 +340,41 @@
                         <div class="group-input">
                             <label for="date">Recorrência</label>
                             <div class="options">
-                                <div class="option1 active">Nenhuma</div>
-                                <div class="option1">Parcelada</div>
-                                <div class="option1">Mensal</div>
+                                <div class="option1 active" value="<?php $recurrence = 'N';?>">Nenhuma</div>
+                                <div class="option1" value="<?php $recurrence = 'P';?>">Parcelada</div>
+                                <div class="option1" value="<?php $recurrence = 'M';?>">Mensal</div>
                             </div>
-                            <input type="text" name="recorrencia" value="<?php echo $recurrence;?>">
+                            <input type="hidden" name="recorrencia" value="<?php echo $recurrence;?>">
                         </div>
 
                         <div class="group-input">
                             <label for="date">Categoria</label>
                             <select name="category" id="category" class="options">
-                                <option value="outros">Outros</option>
-                                <option value="não sei">Não Sei</option>
+                                <option value="<?php $category = 1;?>">Outros</option>
+                                <!-- <option value="não sei">Não Sei</option> -->
                             </select>
-                            <input type="text" name="categoria" value="<?php echo $category;?>">
+                            <input type="hidden" name="categoria" value="<?php echo $category;?>">
                         </div>
 
                         <div class="group-input">
                             <label for="date">Conta</label>
                             <select name="category" id="category" class="options">
-                                <option value="minha conta">Minha Conta</option>
-                                <option value="não sei">Não Sei</option>
+                                <option value="<?php $wallet = 1;?>">Minha Conta</option>
+                                <!-- <option value="não sei">Não Sei</option> -->
                             </select>
-                            <input type="text" name="carteira" value="<?php echo $wallet;?>">
+                            <input type="hidden" name="carteira" value="<?php echo $wallet;?>">
                         </div>
 
                         <div class="group-input">
                             <label for="situation">Situação</label>
                             <div id="situation" class="options">
-                                <div class="option2">A pagar</div>
-                                <div class="option2 active">Pago</div>
+                                <div class="option2" value="<?php $situation = 'A';?>">A pagar</div>
+                                <div class="option2 active" value="<?php $situation = 'P';?>">Pago</div>
                             </div>
-                            <input type="text" name="situacao" value="<?php echo $situation;?>">
+                            <input type="hidden" name="situacao" value="<?php echo $situation;?>">
                         </div>
-
                         <div class="salvar">
-                            <input type="submit" name="submitExpense" value="Salvar">  
+                            <input type="submit" name="submitExpense" value="Salvar">
                         </div>
                     </form>
                 </div>
