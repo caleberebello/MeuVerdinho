@@ -13,7 +13,7 @@
         include('API.php');
 
         function registerUser($data){
-            $apiCall = callAPI("POST", $GLOBALS['local'] . "/user", json_encode($data));
+            $apiCall = callAPI("POST", $GLOBALS['url'] . "/user", json_encode($data));
             $response = json_decode($apiCall, true);
             // $errors = $response["response"]["errors"];
 
