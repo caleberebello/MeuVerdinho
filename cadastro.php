@@ -93,7 +93,7 @@
 
                     <div class="group-input">
                         <label for="birthday">Data de Nascimento</label>
-                        <input id="birthday" type="text" placeholder="29-02-1992" name="dataNascimento" value="<?php echo $birth;?>">
+                        <input id="birthday" type="text" placeholder="1992-02-29" name="dataNascimento" value="<?php echo $birth;?>">
                     </div>
 
                     <div class="group-input">
@@ -103,7 +103,7 @@
 
                     <div class="group-input">
                         <label for="password">Senha</label>
-                        <input id="password" type="password" placeholder="******" name="senha" value="<?php echo $password;?>">
+                        <input id="password" type="password" placeholder="********" name="senha" value="<?php echo $password;?>">
                     </div>
 
                     <div class="cadastrar">
