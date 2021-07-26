@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="cadastro.css">
     <title>Cadastro</title>
 </head>
+
+
+
 <body>
     <?php
         include('cadastro-form.php');
@@ -67,54 +70,88 @@
             <div class="formulario">
                 <div class="links">
                     <ul>
-                        <li><a href="#">ENTRAR</a></li>
-                        <li><a href="#">CADASTRAR</a></li>
+                        <li><a onclick="login()" style="cursor: pointer;">ENTRAR</a></li>
+                        <li><a onclick="cadastro()" style="cursor: pointer;">CADASTRAR</a></li>
                     </ul>
                 </div>
 
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    <div class="group-input">
-                        <label for="username">Nome de Usuário</label>
-                        <div class="input">
-                            <input id="username" type="text" placeholder="amanda_cs" name="username" value="<?php echo $username;?>">
+                <div class="loginres" id="troca">
+                    <form id="login" action="post">
+                        <div class="group-input">
+                            <label for="email">Endereço de e-mail</label>
+                            <input id="email" type="text" placeholder="exemplo@gmail.com" name="email" value="<?php echo $email;?>">
                         </div>
-                        
-                    </div>
+                        <div class="group-input">
+                            <label for="password">Senha</label>
+                            <input id="password" type="password" placeholder="********" name="senha" value="<?php echo $password;?>">
+                        </div>
+                        <div class="login">
+                            <!-- <a href="dashboard.php"> -->
+                            <input type="submit" name="submit" value="ACESSAR CONTA">  
+                        </div>
+                    </form>
+                    <form id="cadastro" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                        <div class="group-input">
+                            <label for="username">Nome de Usuário</label>
+                            <div class="input">
+                                <input id="username" type="text" placeholder="amanda_cs" name="username" value="<?php echo $username;?>">
+                            </div>
+                            
+                        </div>
 
-                    <div class="group-input">
-                        <label for="name">Nome</label>
-                        <input id="name" type="text" placeholder="Amanda" name="nome" value="<?php echo $name;?>">
-                    </div>
+                        <div class="group-input">
+                            <label for="name">Nome</label>
+                            <input id="name" type="text" placeholder="Amanda" name="nome" value="<?php echo $name;?>">
+                        </div>
 
-                    <div class="group-input">
-                        <label for="secondName">Sobrenome</label>
-                        <input id="secondName" type="text" placeholder="Castro Silva" name="sobrenome" value="<?php echo $lastName;?>">
-                    </div>
+                        <div class="group-input">
+                            <label for="secondName">Sobrenome</label>
+                            <input id="secondName" type="text" placeholder="Castro Silva" name="sobrenome" value="<?php echo $lastName;?>">
+                        </div>
 
-                    <div class="group-input">
-                        <label for="birthday">Data de Nascimento</label>
-                        <input id="birthday" type="text" placeholder="1992-02-29" name="dataNascimento" value="<?php echo $birth;?>">
-                    </div>
+                        <div class="group-input">
+                            <label for="birthday">Data de Nascimento</label>
+                            <input id="birthday" type="text" placeholder="1992-02-29" name="dataNascimento" value="<?php echo $birth;?>">
+                        </div>
 
-                    <div class="group-input">
-                        <label for="email">E-mail</label>
-                        <input id="email" type="text" placeholder="exemplo@gmail.com" name="email" value="<?php echo $email;?>">
-                    </div>
+                        <div class="group-input">
+                            <label for="email">E-mail</label>
+                            <input id="email" type="text" placeholder="exemplo@gmail.com" name="email" value="<?php echo $email;?>">
+                        </div>
 
-                    <div class="group-input">
-                        <label for="password">Senha</label>
-                        <input id="password" type="password" placeholder="********" name="senha" value="<?php echo $password;?>">
-                    </div>
+                        <div class="group-input">
+                            <label for="password">Senha</label>
+                            <input id="password" type="password" placeholder="********" name="senha" value="<?php echo $password;?>">
+                        </div>
 
-                    <div class="cadastrar">
-                        <!-- <a href="dashboard.php"> -->
-                        <input type="submit" name="submit" value="CADASTRAR">  
-                    </div>
-                </form>
+                        <div class="cadastrar">
+                            <!-- <a href="dashboard.php"> -->
+                            <input type="submit" name="submit" value="CADASTRAR">  
+                        </div>
+                    </form>
+                </div>
+                
                 <?php
                 
                 
                 ?>
+                <script>
+                    var x = document.getElementById("login")
+                    var y = document.getElementById("cadastro")
+                    var z = document.getElementById("troca")
+
+                    function login(){
+                        x.style.left = "-500px"
+                        y.style.left = "100px"
+                        z.style.left = "150px"
+                    }
+
+                    function cadastro(){
+                        x.style.left = "-370px"
+                        y.style.left = "-370px"
+                        z.style.left = "-170px"
+                    }
+                </script>
             </div>
         </div>
         
