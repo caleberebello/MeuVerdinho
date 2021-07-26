@@ -141,15 +141,15 @@
                     var z = document.getElementById("troca")
 
                     function login(){
-                        x.style.left = "-500px"
-                        y.style.left = "100px"
-                        z.style.left = "150px"
+                        x.style.left = "-100px"
+                        y.style.left = "27px"
+                        z.style.left = "27px"
                     }
 
                     function cadastro(){
-                        x.style.left = "-370px"
-                        y.style.left = "-370px"
-                        z.style.left = "-170px"
+                        x.style.left = "-510px"
+                        y.style.left = "-510px"
+                        z.style.left = "-310px"
                     }
                 </script>
             </div>

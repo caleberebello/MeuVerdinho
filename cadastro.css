@@ -90,6 +90,7 @@ main .chamada{
 .formulario{
     margin-top: 215px;
     margin-left: 179px;
+    overflow: hidden;
 }
 
 .loginres {
@@ -198,9 +199,9 @@ main .chamada{
 }
 
 #login{
-    left: 150px;
+    left: 27px;
 }
 
 #registro{
-    left: -500px;
+    left: -800px;
 }
