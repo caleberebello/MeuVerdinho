@@ -70,9 +70,10 @@
             <img src="img/user.png" class="img-redonda">
             <div>
                 <?php
-                    $returnData = callAPI("GET", $url . "/user", false);
-                    $response = json_decode($returnData, true);
-                    $data = $response['result'][1];
+                    $apiCall = callAPI("GET", $url . "/user", false);
+                    $response['result'] = json_decode($apiCall['result'], true);
+                    $response['httpcode'] = $apiCall['httpcode'];
+                    $data = $response['result']['result'][1];
                 ?>
                 <p class="nome"><?=$data['nome']?></p>
                 <p class="usuario"><?=$data['username']?></p>
