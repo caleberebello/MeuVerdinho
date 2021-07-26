@@ -16,7 +16,6 @@
             $apiCall = callAPI("POST", $GLOBALS['url'] . "/user", json_encode($data));
             $response = json_decode($apiCall, true);
             // $errors = $response["response"]["errors"];
-
             return $response;
         }
 
@@ -31,6 +30,12 @@
                 "img_path" => null
             ];
             registerUser($data);
+
+            // if($response['http_code'] == 200){
+            //     $action = "dashboard.php";
+            // }else{
+            //     $action = "cadastro.php";
+            // }
         }
     ?>
     <header>
@@ -72,7 +77,7 @@
                     </ul>
                 </div>
 
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <form method="post" action="dashboard.php">
                     <div class="group-input">
                         <label for="username">Nome de Usuário</label>
                         <div class="input">

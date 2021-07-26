@@ -37,7 +37,9 @@ function callAPI($method, $url, $data) {
      
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     $result = curl_exec($curl);
+    // $result['http_code'] = $httpcode;
       
     if(!$result) {
         echo("Connection failure!");
