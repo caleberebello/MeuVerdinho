@@ -29,9 +29,10 @@
 
         function registerTransaction($data){
             $apiCall = callAPI("POST", $GLOBALS['url'] . "/transaction", json_encode($data));
-            $response = json_decode($apiCall, true);
+            $response['result'] = json_decode($apiCall['result'], true);
+            $response['httpcode'] = $apiCall['httpcode'];
             // $errors = $response["response"]["errors"];
-            $data = $response;
+            $data = $response['result'];
             
         }
 
@@ -119,10 +120,11 @@
                         <a href="historico_receita.php"></a>
                         <h1 class="txt-saldo">Saldo Atual</h1>
                         <?php
-                            $returnData = callAPI("GET", $url . "/wallet/?idWallet=1", false);
-                            $response = json_decode($returnData, true);
+                            $apiCall = callAPI("GET", $url . "/wallet/?idWallet=1", false);
+                            $response['result'] = json_decode($apiCall['result'], true);
+                            $response['httpcode'] = $apiCall['httpcode'];
                             // $errors = $response[‘response’][‘errors’];
-                            $data = number_format(floatval($response["saldo"]), 2, ',', '.');
+                            $data = number_format(floatval($response['result']["saldo"]), 2, ',', '.');
                         ?>
                         <p class="saldo">R$ <?=$data?></p>
                     </div>
@@ -142,10 +144,11 @@
                                 'carteira_id' => 1
                             ];
 
-                            $returnData = callAPI("GET", $url . "/transaction-total", json_encode($data));
-                            $response = json_decode($returnData, true);
+                            $apiCall = callAPI("GET", $url . "/transaction-total", json_encode($data));
+                            $response['result'] = json_decode($apiCall['result'], true);
+                            $response['httpcode'] = $apiCall['httpcode'];
                             // $errors = $response[‘response’][‘errors’];
-                            $data = number_format(floatval($response['result']['total_receita']), 2, ',', '.');
+                            $data = number_format(floatval($response['result']['result']['total_receita']), 2, ',', '.');
                         ?>
                         
                         <p class="saldo-previsto">R$ <?=$data?></p>
@@ -169,10 +172,11 @@
                                 'carteira_id' => 1
                             ];
 
-                            $returnData = callAPI("GET", $url . "/transaction-total", json_encode($data));
-                            $response = json_decode($returnData, true);
+                            $apiCall = callAPI("GET", $url . "/transaction-total", json_encode($data));
+                            $response['result'] = json_decode($apiCall['result'], true);
+                            $response['httpcode'] = $apiCall['httpcode'];
                             // $errors = $response[‘response’][‘errors’];
-                            $data = number_format(floatval($response['result']['total_despesa']), 2, ',', '.');
+                            $data = number_format(floatval($response['result']['result']['total_despesa']), 2, ',', '.');
                         ?>
     
                         <div>
@@ -192,10 +196,11 @@
                             'carteira_id' => 1
                         ];
 
-                        $returnData = callAPI("GET", $url . "/goal-wallet", json_encode($data));
-                        $response = json_decode($returnData, true);
+                        $apiCall = callAPI("GET", $url . "/goal-wallet", json_encode($data));
+                        $response['result'] = json_decode($apiCall['result'], true);
+                        $response['httpcode'] = $apiCall['httpcode'];
                         // $errors = $response[‘response’][‘errors’];
-                        $data = $response['result'];
+                        $data = $response['result']['result'];
                     ?>
                       
                     <?php foreach($data as $goal): ?>

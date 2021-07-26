@@ -17,10 +17,20 @@
 
         function registerUser($data){
             $apiCall = callAPI("POST", $GLOBALS['url'] . "/user", json_encode($data));
-            $response = json_decode($apiCall, true);
+            $response['result'] = json_decode($apiCall['result'], true);
+            $response['httpcode'] = $apiCall['httpcode'];
             // $errors = $response["response"]["errors"];
             return $response;
         }
+
+        function login($data){
+            $apiCall = callAPI("POST", $GLOBALS['url'] . "/login", json_encode($data));
+            $response['result'] = json_decode($apiCall['result'], true);
+            $response['httpcode'] = $apiCall['httpcode'];
+            // $errors = $response["response"]["errors"];
+            return $response;
+        }
+
 
         if (isset($_POST['submit'])){
             $data = [
@@ -32,13 +42,27 @@
                 "telefone" => null,
                 "img_path" => null
             ];
-            registerUser($data);
+            $response = registerUser($data);
 
-            // if($response['http_code'] == 200){
-            //     $action = "dashboard.php";
-            // }else{
-            //     $action = "cadastro.php";
-            // }
+            if($response['httpcode'] == 200){
+                $action = 'dashboard.php';
+            }else{
+                $action = 'cadastro.php';
+            }
+        }
+
+        if (isset($_POST['submit1'])){
+            $data = [
+                "login" => $email,
+                "password" => $password
+            ];
+            $response = login($data);
+
+            if($response['httpcode'] == 200){
+                $action = 'dashboard.php';
+            }else{
+                $action = 'cadastro.php';
+            }
         }
     ?>
     <header>
@@ -81,7 +105,7 @@
                 </div>
 
                 <div class="loginres" id="troca">
-                    <form id="login" action="post">
+                    <form id="login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <div class="group-input">
                             <label for="email">Endereço de e-mail</label>
                             <input id="email" type="text" placeholder="exemplo@gmail.com" name="email" value="<?php echo $email;?>">
@@ -92,9 +116,11 @@
                         </div>
                         <div class="login">
                             <!-- <a href="dashboard.php"> -->
-                            <input type="submit" name="submit" value="ACESSAR CONTA">  
+                            <input type="submit" name="submit1" value="ACESSAR CONTA">  
                         </div>
                     </form>
+
+
                     <form id="cadastro" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <div class="group-input">
                             <label for="username">Nome de Usuário</label>

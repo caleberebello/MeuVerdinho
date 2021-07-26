@@ -37,9 +37,10 @@
             <img src="img/user.png" class="img-redonda">
             <div>
                 <?php
-                    $returnData = callAPI("GET", $url . "/user", false);
-                    $response = json_decode($returnData, true);
-                    $data = $response['result'][1];
+                    $apiCall = callAPI("GET", $url . "/user", false);
+                    $response['result'] = json_decode($apiCall['result'], true);
+                    $response['httpcode'] = $apiCall['httpcode'];
+                    $data = $response['result']['result'][1];
                 ?>
                 <p class="nome"><?=$data['nome']?></p>
                 <p class="usuario"><?=$data['username']?></p>
@@ -87,10 +88,11 @@
                                 'carteira_id' => 1
                             ];
 
-                            $returnData = callAPI("GET", $url . "/transaction-total", json_encode($data));
-                            $response = json_decode($returnData, true);
+                            $apiCall = callAPI("GET", $url . "/transaction-total", json_encode($data));
+                            $response['result'] = json_decode($apiCall['result'], true);
+                            $response['httpcode'] = $apiCall['httpcode'];
                             // $errors = $response[‘response’][‘errors’];
-                            $data = number_format(floatval($response['result']['total_receita']), 2, ',', '.');
+                            $data = number_format(floatval($response['result']['result']['total_receita']), 2, ',', '.');
                         ?>
                         <p class="saldo">R$ <?=$data?></p>
                     </div>
@@ -110,10 +112,11 @@
 
                 $revenueArray = [];
 
-                $returnData = callAPI("GET", $url . "/transaction-type", json_encode($data));
-                $response = json_decode($returnData, true);
+                $apiCall = callAPI("GET", $url . "/transaction-type", json_encode($data));
+                $response['result'] = json_decode($apiCall['result'], true);
+                $response['httpcode'] = $apiCall['httpcode'];
                 // $errors = $response[‘response’][‘errors’];
-                $data = $response['result'];
+                $data = $response['result']['result'];
                 foreach($data as $revenue){
                     array_push($revenueArray, $revenue);
                 }
